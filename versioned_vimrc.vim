@@ -2,7 +2,7 @@
 " --------- general settings ----------
 syntax on
 set t_Co=256
-colorscheme Tomorrow-Night-Eighties
+colorscheme xoria256
 set cursorline
 
 " remove trailing whitespace on write
