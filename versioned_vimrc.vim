@@ -17,6 +17,7 @@ map <F2> :NERDTreeToggle \| :silent NERDTreeMirror<CR>
 " tab stuff
 set showtabline=2
 command T tabnew
+command TE tabe <q-args>
 
 " spaces instead of tabs, etc
 set shiftwidth=4
@@ -54,6 +55,12 @@ command! -nargs=1 ChgExt execute "saveas ".expand("%:p:r").<q-args>
 
 " ctags stuff
 map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+
+" show svn log for current file
+command! SL silent call s:RunShellCommand("svn log ".expand("%:p"))
+
+" show svn diff to previous revision
+command! SDP silent call s:RunShellCommand("svn diff -x -w -r BASE:PREV ".expand("%:p")) | set filetype=diff
 
 " better shell command
 command! -complete=shellcmd -nargs=+ Shell call s:RunShellCommand(<q-args>)
