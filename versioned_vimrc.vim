@@ -56,11 +56,17 @@ command! -nargs=1 ChgExt execute "saveas ".expand("%:p:r").<q-args>
 " ctags stuff
 map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 
-" show svn log for current file
+" :SL -> show svn log for current file
 command! SL silent call s:RunShellCommand("svn log ".expand("%:p"))
 
-" show svn diff to previous revision
-command! SDP silent call s:RunShellCommand("svn diff -x -w -r BASE:PREV ".expand("%:p")) | set filetype=diff
+" :SD -> show svn diff to current revision
+command! SL silent call s:RunShellCommand("svn diff -x -w ".expand("%:p")) | set filetype=diff
+
+" :SDP -> show svn diff to previous revision
+command! SDP silent call s:RunShellCommand("svn diff -x -w -r PREV:BASE ".expand("%:p")) | set filetype=diff
+
+" svn blame. select block in visual mode and type gl
+vmap gl :<C-U>silent Shell svn blame <C-R>=expand("%:p") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p <CR>
 
 " better shell command
 command! -complete=shellcmd -nargs=+ Shell call s:RunShellCommand(<q-args>)
