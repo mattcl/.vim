@@ -60,7 +60,7 @@ map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 command! SL silent call s:RunShellCommand("svn log ".expand("%:p"))
 
 " :SD -> show svn diff to current revision
-command! SL silent call s:RunShellCommand("svn diff -x -w ".expand("%:p")) | set filetype=diff
+command! SDC silent call s:RunShellCommand("svn diff -x -w ".expand("%:p")) | set filetype=diff
 
 " :SDP -> show svn diff to previous revision
 command! SDP silent call s:RunShellCommand("svn diff -x -w -r PREV:BASE ".expand("%:p")) | set filetype=diff
