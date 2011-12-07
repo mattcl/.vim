@@ -9,7 +9,7 @@ syn match getRequest    +GET+
 syn match postRequest   +POST+
 
 syn match notFound             +404+ contained display
-syn match notFoundWrapper      +\s404\s+ contains=notFound
+syn match notFoundWrapper      +"\s404\s+ contains=notFound
 
 " highlight the time
 syn match timestamp     "[0-9]\{1,2}/[A-Za-z]\{3}/[0-9]\{4}\(:[0-9]\{1,2}\)\{3}"

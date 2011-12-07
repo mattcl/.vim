@@ -65,12 +65,20 @@ command! SDC silent call s:RunShellCommand("svn diff -x -w ".expand("%:p")) | se
 " :SDP -> show svn diff to previous revision
 command! SDP silent call s:RunShellCommand("svn diff -x -w -r PREV:BASE ".expand("%:p")) | set filetype=diff
 
+command! -nargs=1 SDR silent call s:RunShellCommand("svn diff -x -w -r ".<args>.":BASE ".expand("%:p")) | set filetype=diff
+
 " svn blame. select block in visual mode and type gl
 vmap gl :<C-U>silent Shell svn blame <C-R>=expand("%:p") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p <CR>
 
+" access the apache access log
+command! -nargs=1 AL silent call s:RunShellCommand("scp cit@".<q-args>.":/var/log/apache2/access.log /tmp/ && cat /tmp/access.log", "this param will open in the same window") | set filetype=apache_log
+
+" access the apache access log
+command! -nargs=1 ALB silent call s:RunShellCommand("scp cit@".<q-args>.":/var/log/apache2/access.log.1 /tmp/ && cat /tmp/access.log.1", "this param will open in the same window") | set filetype=apache_log
+
 " better shell command
 command! -complete=shellcmd -nargs=+ Shell call s:RunShellCommand(<q-args>)
-function! s:RunShellCommand(cmdline)
+function! s:RunShellCommand(cmdline, ...)
     echo a:cmdline
     let expanded_cmdline = a:cmdline
     for part in split(a:cmdline, ' ')
@@ -79,7 +87,9 @@ function! s:RunShellCommand(cmdline)
             let expanded_cmdline = substitute(expanded_cmdline, part, expanded_part, '')
         endif
     endfor
-    botright new
+    if a:0 == 0
+        botright new
+    endif
     setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile nowrap
     "call setline(1, 'You entered:    ' . a:cmdline)
     "call setline(2, 'Expanded Form:  ' .expanded_cmdline)

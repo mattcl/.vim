@@ -1434,15 +1434,15 @@ endfun
 " Input:
 "   choice = url   [protocol:]//[userid@]hostname[:port]/[path-to-file]
 " Output:
-"  b:netrw_method= 1: rcp                                             
-"                  2: ftp + <.netrc>                                  
-"	           3: ftp + machine, id, password, and [path]filename 
-"	           4: scp                                             
-"	           5: http (wget)                                     
+"  b:netrw_method= 1: rcp
+"                  2: ftp + <.netrc>
+"	           3: ftp + machine, id, password, and [path]filename
+"	           4: scp
+"	           5: http (wget)
 "	           6: dav
-"	           7: rsync                                           
-"	           8: fetch                                           
-"	           9: sftp                                            
+"	           7: rsync
+"	           8: fetch
+"	           9: sftp
 "  g:netrw_machine= hostname
 "  b:netrw_fname  = filename
 "  g:netrw_port   = optional port number (for ftp)
@@ -3175,7 +3175,7 @@ fun! netrw#NetrwBrowseX(fname,remote)
   " usually have "kdeinit" running, though...  (tnx Mikolaj Machowski)
   if !exists("s:haskdeinit")
    if has("unix")
-    let s:haskdeinit= system("ps -e") =~ 'kdeinit' 
+    let s:haskdeinit= system("ps -e") =~ 'kdeinit'
     if v:shell_error
      let s:haskdeinit = 0
     endif
@@ -4367,7 +4367,7 @@ fun! s:NetrwMarkFileCopy(islocal)
   if g:netrw_fastbrowse <= 1
    call s:LocalBrowseShellCmdRefresh()
   endif
-  
+
 "  call Dret("s:NetrwMarkFileCopy 1")
   return 1
 endfun
@@ -4423,7 +4423,7 @@ fun! s:NetrwMarkFileEdit(islocal)
 "   call Decho("exe silent args ".flist)
    exe "silent args ".flist
   endif
-  
+
 "  call Dret("s:NetrwMarkFileEdit")
 endfun
 
@@ -4482,7 +4482,7 @@ fun! s:NetrwMarkFileExe(islocal)
   else
    call netrw#ErrorMsg(s:ERROR,"no files marked!",59)
   endif
-  
+
 "  call Dret("s:NetrwMarkFileExe")
 endfun
 
@@ -4683,7 +4683,7 @@ fun! s:NetrwMarkFileMove(islocal)
   if g:netrw_fastbrowse <= 1
    call s:LocalBrowseShellCmdRefresh()
   endif
-  
+
 "  call Dret("s:NetrwMarkFileMove")
 endfun
 
@@ -4861,7 +4861,7 @@ endfun
 
 " ---------------------------------------------------------------------
 " s:NetrwMarkFileTgt:  (invoked by mt) This function sets up a marked file target {{{2
-"   Sets up two variables, 
+"   Sets up two variables,
 "     s:netrwmftgt : holds the target directory
 "     s:netrwmftgt_islocal : 0=target directory is remote
 "                    1=target directory is local
@@ -4965,7 +4965,7 @@ fun! s:NetrwUnmarkList(curbufnr,curdir)
    if s:netrwmarkfilelist == []
     unlet s:netrwmarkfilelist
    endif
- 
+
    " getting rid of the local marked-file lists is easy
    unlet s:netrwmarkfilelist_{a:curbufnr}
   endif
@@ -4996,7 +4996,7 @@ fun! s:NetrwUnmarkAll2()
   let
   redir END
   let netrwmarkfilelist_list= split(netrwmarkfilelist_let,'\n')          " convert let string into a let list
-  call filter(netrwmarkfilelist_list,"v:val =~ '^s:netrwmarkfilelist_'") " retain only those vars that start as s:netrwmarkfilelist_ 
+  call filter(netrwmarkfilelist_list,"v:val =~ '^s:netrwmarkfilelist_'") " retain only those vars that start as s:netrwmarkfilelist_
   call map(netrwmarkfilelist_list,"substitute(v:val,'\\s.*$','','')")    " remove what the entries are equal to
   for flist in netrwmarkfilelist_list
    let curbufnr= substitute(flist,'s:netrwmarkfilelist_','','')
@@ -5682,7 +5682,7 @@ fun! s:NetrwRefreshDir(islocal,dirname)
     let curwin= winnr()
 "    call Decho("refresh tgtwin#".tgtwin." (curwin#".curwin.")")
     exe tgtwin."wincmd w"
-    call s:NetrwRefresh(a:islocal,s:NetrwBrowseChgDir(a:islocal,'./')) 
+    call s:NetrwRefresh(a:islocal,s:NetrwBrowseChgDir(a:islocal,'./'))
     exe curwin."wincmd w"
 
    elseif bufnr(a:dirname) > 0
@@ -6844,7 +6844,7 @@ fun! s:NetrwRemoteRename(usrhost,path) range
 "      call Decho("subfrom<".subfrom."> subto<".subto."> newname<".newname.">")
      endif
     endif
-   
+
     if exists("w:netrw_method") && (w:netrw_method == 2 || w:netrw_method == 3)
      call s:NetrwRemoteFtpCmd(a:path,"rename ".oldname." ".newname)
     else
@@ -7216,7 +7216,7 @@ endfun
 "                     Give confirmation prompt unless all==1
 fun! s:NetrwLocalRmFile(path,fname,all)
 "  call Dfunc("s:NetrwLocalRmFile(path<".a:path."> fname<".a:fname."> all=".a:all)
-  
+
   let all= a:all
   let ok = ""
   norm! 0
@@ -7326,7 +7326,7 @@ fun! s:NetrwLocalRename(path) range
     call rename(oldname,newname)
    endfor
    call s:NetrwUnmarkList(bufnr("%"),b:netrw_curdir)
-  
+
   else
 
    " attempt to rename files/directories
@@ -7371,10 +7371,10 @@ endfun
 " s:LocalFastBrowser: handles setting up/taking down fast browsing for the local browser {{{2
 "
 "     g:netrw_    Directory Is
-"     fastbrowse  Local  Remote   
+"     fastbrowse  Local  Remote
 "  slow   0         D      D      D=Deleting a buffer implies it will not be re-used (slow)
 "  med    1         D      H      H=Hiding a buffer implies it may be re-used        (fast)
-"  fast   2         H      H      
+"  fast   2         H      H
 "
 "  Deleting a buffer means that it will be re-loaded when examined, hence "slow".
 "  Hiding   a buffer means that it will be re-used   when examined, hence "fast".
@@ -8084,14 +8084,14 @@ fun! s:Strlen(x)
    let ret= strlen(substitute(a:x,'.','c','g'))
 
   elseif g:netrw_xstrlen == 2
-   " number of spacing codepoints (Latin a + combining circumflex is one spacing 
+   " number of spacing codepoints (Latin a + combining circumflex is one spacing
    " codepoint; a hard tab is one; wide and narrow CJK are one each; etc.)
    " (comment from TM, solution from TM)
-   let ret=strlen(substitute(a:x, '.\Z', 'x', 'g')) 
+   let ret=strlen(substitute(a:x, '.\Z', 'x', 'g'))
 
   elseif g:netrw_xstrlen == 3
-   " virtual length (counting, for instance, tabs as anything between 1 and 
-   " 'tabstop', wide CJK as 2 rather than 1, Arabic alif as zero when immediately 
+   " virtual length (counting, for instance, tabs as anything between 1 and
+   " 'tabstop', wide CJK as 2 rather than 1, Arabic alif as zero when immediately
    " preceded by lam, one otherwise, etc.)
    " (comment from TM, solution from me)
    let modkeep= &mod
