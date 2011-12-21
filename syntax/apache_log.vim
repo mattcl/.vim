@@ -1,4 +1,8 @@
+" Matt C-L
 " syntax for reading apache access logs
+
+" for the logfile
+" vim: set ft=apache_log
 
 " don't wrap
 set nowrap
@@ -32,7 +36,6 @@ highlight link timestamp            ApacheTimestamp
 highlight link longerThanOneSecond  ApacheLongResponse
 
 " define colors to be consitent regardless of vimrc
-
 hi Normal               ctermfg=244 guifg=#808080 ctermbg=234 guibg=#1c1c1c cterm=none gui=none
 hi ApacheUrl            ctermfg=150 guifg=#afdf87
 hi ApacheTimestamp      ctermfg=229 guifg=#ffffaf
