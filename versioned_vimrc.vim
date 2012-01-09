@@ -4,6 +4,7 @@ syntax on
 set t_Co=256
 colorscheme xoria256
 set cursorline
+set runtimepath+=~/.vim/ultisnips_rep
 
 " remove trailing whitespace on write
 autocmd BufWritePre * :%s/\s\+$//e
