@@ -4,7 +4,7 @@
 " Last Modified: July 21, 2009
 "
 " Testing Info: {{{
-"   See directions at the top of the test.py script located one 
+"   See directions at the top of the test.py script located one
 "   directory above this file.
 " }}}
 
@@ -20,13 +20,13 @@ if !exists("g:UltiSnipsExpandTrigger")
     let g:UltiSnipsExpandTrigger = "<tab>"
 endif
 
-" The trigger used to display all triggers that could possible 
+" The trigger used to display all triggers that could possible
 " match in the current position.
 if !exists("g:UltiSnipsListSnippets")
     let g:UltiSnipsListSnippets = "<c-tab>"
 endif
 
-" The trigger used to jump forward to the next placeholder. 
+" The trigger used to jump forward to the next placeholder.
 " NOTE: expansion and forward jumping can, but needn't be the same trigger
 if !exists("g:UltiSnipsJumpForwardTrigger")
     let g:UltiSnipsJumpForwardTrigger = "<c-j>"
@@ -51,10 +51,10 @@ endif
 " is opened when editing. default is "normal", allowed are also
 " "vertical", "horizontal"
 if !exists("g:UltiSnipsEditSplit")
-    let g:UltiSnipsEditSplit = 'normal'
+    let g:UltiSnipsEditSplit = 'vertical'
 endif
 
-" A list of directory names that are searched for snippets. 
+" A list of directory names that are searched for snippets.
 if !exists("g:UltiSnipsSnippetDirectories")
     let g:UltiSnipsSnippetDirectories = [ "UltiSnips" ]
 endif
