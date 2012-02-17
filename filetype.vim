@@ -3,5 +3,6 @@ if exists("did_load_filetypes")
 endif
 augroup filetypedetect
     au! BufNewFile,BufRead *.snippets setf snippets
-    au! BufNewFile,BufRead *.tml setf php
+    au! BufNewFile,BufRead *.tml setf htmldjango
+    au! BufNewFile,BufRead access.log* setf apache_log
 augroup END
