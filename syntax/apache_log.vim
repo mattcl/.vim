@@ -19,7 +19,11 @@ syn match notFoundWrapper      +"\s404\s+ contains=notFound
 syn match timestamp     "[0-9]\{1,2}/[A-Za-z]\{3}/[0-9]\{4}\(:[0-9]\{1,2}\)\{3}"
 
 " highlight the requested url
-syn region requestedUrl     start="\s/"hs=e+1 end="\sHTTP"he=s-1
+syn match testFile +\/\S*ftest\S*+ contained display
+syn region requestedUrl     start="\s/"hs=e+1 end="\sHTTP"he=s-1 contains=testFile
+
+"syn region requestedUrlTest     start="\s/"hs=e+1 end="\sHTTP"he=s-1 contains=testFile
+
 
 " The next two instructions match a number greater than or equal to 1000000
 " when it follows an ip address. The end effect is that it will higlight
@@ -31,12 +35,14 @@ syn match longRequest          "^\([0-9]\{1,3}\.*\)\{4}\s\([0-9]\{7,}\)" contain
 highlight link getRequest           ApacheGET
 highlight link postRequest          ApachePOST
 highlight link notFound             Apache404
+highlight link testFile             ApacheTestFile
 highlight link requestedUrl         ApacheUrl
 highlight link timestamp            ApacheTimestamp
 highlight link longerThanOneSecond  ApacheLongResponse
 
 " define colors to be consitent regardless of vimrc
 hi Normal               ctermfg=244 guifg=#808080 ctermbg=234 guibg=#1c1c1c cterm=none gui=none
+hi ApacheTestFile       ctermfg=180 guifg=#dfaf87
 hi ApacheUrl            ctermfg=150 guifg=#afdf87
 hi ApacheTimestamp      ctermfg=229 guifg=#ffffaf
 hi ApachePOST           ctermfg=182 guifg=#dfafdf                           cterm=none
