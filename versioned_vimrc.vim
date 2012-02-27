@@ -15,10 +15,20 @@ nmap <C-N><C-N> :set invnumber<CR>
 " toggle nerdtree
 map <F2> :NERDTreeToggle \| :silent NERDTreeMirror<CR>
 
-" tab stuff
+" tab pane stuff
 set showtabline=2
 command T tabnew
 command TE tabe <q-args>
+
+" split navigation
+noremap <C-h> <C-w>h
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-l> <C-w>l
+
+" reselect after indent or outdent
+vnoremap < <gv
+vnoremap > >gv
 
 " spaces instead of tabs, etc
 set shiftwidth=4
@@ -26,15 +36,21 @@ set tabstop=4
 set expandtab
 set autoindent
 
+" searching stuff
+set ignorecase
+set smartcase
+
 " highlight searches
 set hlsearch
 
 " move to match while typing
 set incsearch
 
-set ignorecase
-set smartcase
+" center searches
+nnoremap n nzz
+nnoremap N Nzz
 
+" misc
 set backspace=indent,eol,start
 
 set wildmenu
