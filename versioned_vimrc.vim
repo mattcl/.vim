@@ -1,6 +1,8 @@
-
+" --------- pathogen --------
+call pathogen#infect()
 " --------- general settings ----------
 syntax on
+filetype plugin indent on
 set t_Co=256
 colorscheme xoria256
 set cursorline
@@ -57,6 +59,7 @@ set wildmenu
 set showcmd
 
 set cmdheight=2
+set laststatus=2
 
 set mouse=a
 
