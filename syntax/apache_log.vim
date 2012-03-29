@@ -19,7 +19,7 @@ syn match notFoundWrapper      +"\s404\s+ contains=notFound
 syn match timestamp     "[0-9]\{1,2}/[A-Za-z]\{3}/[0-9]\{4}\(:[0-9]\{1,2}\)\{3}"
 
 " highlight the requested url
-syn match testFile +\/\S*ftest\S*+ contained display
+syn match testFile +\/\S*\.test\.\S*+ contained display
 syn region requestedUrl     start="\s/"hs=e+1 end="\sHTTP"he=s-1 contains=testFile
 
 "syn region requestedUrlTest     start="\s/"hs=e+1 end="\sHTTP"he=s-1 contains=testFile

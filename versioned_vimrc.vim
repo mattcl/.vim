@@ -2,7 +2,7 @@
 call pathogen#infect()
 " --------- general settings ----------
 syntax on
-filetype plugin indent on
+filetype on
 set t_Co=256
 colorscheme xoria256
 set cursorline
