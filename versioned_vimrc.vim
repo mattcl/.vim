@@ -52,6 +52,10 @@ set incsearch
 nnoremap n nzz
 nnoremap N Nzz
 
+" increment/decrement
+nnoremap + <C-a>
+nnoremap - <C-x>
+
 " misc
 set backspace=indent,eol,start
 
