@@ -17,6 +17,12 @@ nmap <C-N><C-N> :set invnumber<CR>
 " toggle nerdtree
 map <F2> :NERDTreeToggle \| :silent NERDTreeMirror<CR>
 
+" CtrlP
+
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_arg_map = 1
+
 " tab pane stuff
 set showtabline=2
 command T tabnew
