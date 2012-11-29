@@ -8,6 +8,9 @@ colorscheme xoria256
 set cursorline
 set runtimepath+=~/.vim/ultisnips_rep
 
+autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
+autocmd Filetype cucumber setlocal ts=2 sts=2 sw=2
+
 " remove trailing whitespace on write
 autocmd BufWritePre * :%s/\s\+$//e
 

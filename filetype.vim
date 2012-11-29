@@ -8,4 +8,5 @@ augroup filetypedetect
     au! BufNewFile,BufRead Gemfile setf ruby
     au! BufNewFile,BufRead Guardfile setf ruby
     au! BufNewFile,BufRead *.ru setf ruby
+    au! BufNewFile,BufRead *.tt setf eruby
 augroup END
