@@ -20,6 +20,8 @@ nmap <C-N><C-N> :set invnumber<CR>
 " toggle nerdtree
 map <F2> :NERDTreeToggle \| :silent NERDTreeMirror<CR>
 
+nnoremap <F3> :NumbersToggle<CR>
+
 " CtrlP
 
 let g:ctrlp_map = '<c-p>'
