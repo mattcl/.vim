@@ -28,6 +28,3 @@
 [submodule "bundle/tabular"]
 	path = bundle/tabular
 	url = git@github.com:godlygeek/tabular.git
-[submodule "bundle/splitjoin"]
-	path = bundle/splitjoin
-	url = git@github.com:AndrewRadev/splitjoin.vim.git
