@@ -68,6 +68,17 @@ nnoremap N Nzz
 nnoremap + <C-a>
 nnoremap - <C-x>
 
+" mappings for Tabular.vim
+let mapleader=','
+nmap <Leader>a= :Tabularize /=<CR>
+vmap <Leader>a= :Tabularize /=<CR>
+nmap <Leader>a: :Tabularize /:\zs<CR>
+vmap <Leader>a: :Tabularize /:\zs<CR>
+nmap <Leader>at :Tabularize /\|<CR>
+vmap <Leader>at :Tabularize /\|<CR>
+nmap <Leader>aa :Tabularize /=><CR>
+vmap <Leader>aa :Tabularize /=><CR>
+
 " misc
 set backspace=indent,eol,start
 
