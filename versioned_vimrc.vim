@@ -68,8 +68,8 @@ nnoremap N Nzz
 nnoremap + <C-a>
 nnoremap - <C-x>
 
-" mappings for Tabular.vim
 let mapleader=','
+" mappings for Tabular.vim
 nmap <Leader>a= :Tabularize /=<CR>
 vmap <Leader>a= :Tabularize /=<CR>
 nmap <Leader>a: :Tabularize /:\zs<CR>
@@ -78,6 +78,9 @@ nmap <Leader>at :Tabularize /\|<CR>
 vmap <Leader>at :Tabularize /\|<CR>
 nmap <Leader>aa :Tabularize /=><CR>
 vmap <Leader>aa :Tabularize /=><CR>
+
+" Easy motion
+let g:EasyMotion_leader_key = '<leader>'
 
 " misc
 set backspace=indent,eol,start
