@@ -3,10 +3,14 @@ call pathogen#infect()
 " --------- general settings ----------
 syntax on
 filetype on
+filetype indent on
 set t_Co=256
 colorscheme xoria256
 set cursorline
 set runtimepath+=~/.vim/ultisnips_rep
+
+autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
+autocmd Filetype cucumber setlocal ts=2 sts=2 sw=2
 
 " remove trailing whitespace on write
 autocmd BufWritePre * :%s/\s\+$//e
@@ -16,6 +20,8 @@ nmap <C-N><C-N> :set invnumber<CR>
 
 " toggle nerdtree
 map <F2> :NERDTreeToggle \| :silent NERDTreeMirror<CR>
+
+nnoremap <F3> :NumbersToggle<CR>
 
 " CtrlP
 
@@ -61,6 +67,20 @@ nnoremap N Nzz
 " increment/decrement
 nnoremap + <C-a>
 nnoremap - <C-x>
+
+let mapleader=','
+" mappings for Tabular.vim
+nmap <Leader>a= :Tabularize /=<CR>
+vmap <Leader>a= :Tabularize /=<CR>
+nmap <Leader>a: :Tabularize /:\zs<CR>
+vmap <Leader>a: :Tabularize /:\zs<CR>
+nmap <Leader>at :Tabularize /\|<CR>
+vmap <Leader>at :Tabularize /\|<CR>
+nmap <Leader>aa :Tabularize /=><CR>
+vmap <Leader>aa :Tabularize /=><CR>
+
+" Easy motion
+let g:EasyMotion_leader_key = '<leader>'
 
 " misc
 set backspace=indent,eol,start
