@@ -15,9 +15,6 @@ autocmd Filetype cucumber setlocal ts=2 sts=2 sw=2
 " remove trailing whitespace on write
 autocmd BufWritePre * :%s/\s\+$//e
 
-" toggle line numbers with 2x ctrl-n
-nmap <C-N><C-N> :set invnumber<CR>
-
 " toggle nerdtree
 map <F2> :NERDTreeToggle \| :silent NERDTreeMirror<CR>
 
