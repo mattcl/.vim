@@ -66,15 +66,17 @@ nnoremap + <C-a>
 nnoremap - <C-x>
 
 let mapleader=','
+
 " mappings for Tabular.vim
 nmap <Leader>a= :Tabularize /=<CR>
 vmap <Leader>a= :Tabularize /=<CR>
-nmap <Leader>a: :Tabularize /:\zs<CR>
-vmap <Leader>a: :Tabularize /:\zs<CR>
 nmap <Leader>at :Tabularize /\|<CR>
 vmap <Leader>at :Tabularize /\|<CR>
 nmap <Leader>aa :Tabularize /=><CR>
 vmap <Leader>aa :Tabularize /=><CR>
+" Don't put two spaces between : and the value
+nmap <Leader>a: :Tabularize /:\zs/l1c0<CR>
+vmap <Leader>a: :Tabularize /:\zs/l1c0<CR>
 
 " Easy motion
 let g:EasyMotion_leader_key = '<leader>'
