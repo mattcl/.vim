@@ -25,6 +25,7 @@ nnoremap <F3> :NumbersToggle<CR>
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_arg_map = 1
+let g:ctrlp_clear_cache_on_exit = 0
 
 " tab pane stuff
 set showtabline=2
