@@ -40,3 +40,12 @@
 [submodule "bundle/vim-surround"]
 	path = bundle/vim-surround
 	url = git@github.com:tpope/vim-surround.git
+[submodule "bundle/vim-movar"]
+	path = bundle/vim-movar
+	url = git@github.com:robmiller/vim-movar.git
+[submodule "bundle/vim-multiedit"]
+	path = bundle/vim-multiedit
+	url = git@github.com:hlissner/vim-multiedit.git
+[submodule "bundle/vim_cf3"]
+	path = bundle/vim_cf3
+	url = git@github.com:neilhwatson/vim_cf3.git
