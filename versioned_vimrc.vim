@@ -28,6 +28,10 @@ nnoremap <F3> :NumbersToggle<CR>
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_arg_map = 1
+let g:ctrlp_max_height = 20
+let g:ctrlp_clear_cache_on_exit = 0
+" the directory at work is ridiculously huge
+let g:ctrlp_max_files = 20000
 
 " tab pane stuff
 set showtabline=2
