@@ -49,3 +49,9 @@
 [submodule "bundle/vim_cf3"]
 	path = bundle/vim_cf3
 	url = git@github.com:neilhwatson/vim_cf3.git
+[submodule "bundle/supertab"]
+	path = bundle/supertab
+	url = git@github.com:ervandew/supertab.git
+[submodule "bundle/ultisnips"]
+	path = bundle/ultisnips
+	url = git@github.com:mattcl/ultisnips.git
