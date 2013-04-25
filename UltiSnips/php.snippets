@@ -1,0 +1,51 @@
+snippet "dump (.*)" "A dusty dump" br
+`!p snip.rv = "dusty_dump(" + match.group(1) + ");"`
+endsnippet
+
+snippet "log (.*)" "A dusty log" br
+`!p snip.rv = "dusty_log(" + match.group(1) + ");"`
+endsnippet
+
+snippet cget "get an imvu_config" w
+imvu_config::get(${1:CONFIG}, ${2:null});
+endsnippet
+
+snippet cset "set an imvu_config" !b
+imvu_config::set(${1:CONFIG}, ${2:$value});
+endsnippet
+
+snippet ctest "test set an imvu_config" !b
+imvu_config::_test_set(${1:CONFIG}, ${2:$value});
+endsnippet
+
+snippet "bn ([^\s]*)" "Break if MATCH is null" !br
+`!p snip.rv = "if (!" + match.group(1) + ") {"`
+    return;
+}
+endsnippet
+
+snippet "bn ([^\s]*) (.*)" "Break if MATCH is null and specify return value" !br
+`!p snip.rv = "if (!" + match.group(1) + ") {"`
+    return `!p snip.rv = match.group(2)`;
+}
+endsnippet
+
+snippet "bt ([^\s]*)" "Break if MATCH is not null" !br
+`!p snip.rv = "if (" + match.group(1) + ") {"`
+    return;
+}
+endsnippet
+
+snippet "bt ([^\s]*) (.*)" "Break if MATCH is not null and specify return value" !br
+`!p snip.rv = "if (" + match.group(1) + ") {"`
+    return `!p snip.rv = match.group(2)`;
+}
+endsnippet
+
+snippet "arr (.*)" "Converts MATCH to array" !wr
+(array)`!p snip.rv = match.group(1)`;
+endsnippet
+
+snippet "obj (.*)" "Converts MATCH to obj" !wr
+(object)`!p snip.rv = match.group(1)`;
+endsnippet
