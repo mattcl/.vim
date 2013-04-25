@@ -1,3 +1,12 @@
+
+snippet todo "Output a todo" !b
+// TODO: ${1:msg} - XXX`echo $USER` - `date +%Y-%m-%d`
+endsnippet
+
+snippet fixme "Output a fixme" !b
+// FIXME: ${1:msg} -- XXX`echo $USER` - `date +%Y-%m-%d`
+endsnippet
+
 snippet "dump (.*)" "A dusty dump" br
 `!p snip.rv = "dusty_dump(" + match.group(1) + ");"`
 endsnippet
@@ -48,4 +57,16 @@ endsnippet
 
 snippet "obj (.*)" "Converts MATCH to obj" !wr
 (object)`!p snip.rv = match.group(1)`;
+endsnippet
+
+snippet fakeredis "sets up the fake redis service" !b
+svc('meta')->replace('redis', new \webcore\fake_redis_service(svc('meta')));
+endsnippet
+
+snippet testcust "Creates a test customer" !b
+$this->${1:cid} = customer::_test_create();
+endsnippet
+
+snippet schemabuilder "import the schema builder" !b
+use \webcore\schema\builder as s;
 endsnippet

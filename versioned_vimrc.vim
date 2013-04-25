@@ -7,7 +7,6 @@ filetype indent on
 set t_Co=256
 colorscheme xoria256
 set cursorline
-set runtimepath+=~/.vim/ultisnips_rep
 
 " set indendation for special filetypes
 autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
