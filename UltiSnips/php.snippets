@@ -7,6 +7,7 @@ snippet fixme "Output a fixme" !b
 // FIXME: ${1:msg} -- XXX`echo $USER` - `date +%Y-%m-%d`
 endsnippet
 
+# debugging
 snippet "dump (.*)" "A dusty dump" br
 `!p snip.rv = "dusty_dump(" + match.group(1) + ");"`
 endsnippet
@@ -15,6 +16,7 @@ snippet "log (.*)" "A dusty log" br
 `!p snip.rv = "dusty_log(" + match.group(1) + ");"`
 endsnippet
 
+# config stuff
 snippet cget "get an imvu_config" w
 imvu_config::get(${1:CONFIG}, ${2:null});
 endsnippet
@@ -27,6 +29,7 @@ snippet ctest "test set an imvu_config" !b
 imvu_config::_test_set(${1:CONFIG}, ${2:$value});
 endsnippet
 
+# common annoying operations
 snippet "bn ([^\s]*)" "Break if MATCH is null" !br
 `!p snip.rv = "if (!" + match.group(1) + ") {"`
     return;
@@ -59,14 +62,74 @@ snippet "obj (.*)" "Converts MATCH to obj" !wr
 (object)`!p snip.rv = match.group(1)`;
 endsnippet
 
-snippet fakeredis "sets up the fake redis service" !b
-svc('meta')->replace('redis', new \webcore\fake_redis_service(svc('meta')));
-endsnippet
-
 snippet testcust "Creates a test customer" !b
 $this->${1:cid} = customer::_test_create();
 endsnippet
 
 snippet schemabuilder "import the schema builder" !b
 use \webcore\schema\builder as s;
+endsnippet
+
+# webcore fn
+snippet webfn "import the function module" !b
+use \webcore\fn as fn;
+endsnippet
+
+snippet "map ([^\s]*)(\s.*)?" "map function on interable" !br
+`!p snip.rv = match.group(2).lstrip() if match.group(2) is not None else match.group(1)` = fn::map(function($value, $key) {
+    return ${1:$value};
+}, `!p snip.rv = match.group(1)`);
+endsnippet
+
+snippet "filter ([^\s]*)(\s.*)?" "filter iterable on function" !br
+`!p snip.rv = match.group(2).lstrip() if match.group(2) is not None else match.group(1)` = fn::filter(function($value, $key) {
+    return ${1:// boolean condition};
+}, `!p snip.rv = match.group(1)`);
+endsnippet
+
+snippet "filterd ([^\s]*)(\s.*)?" "filter iterable on function" !br
+`!p snip.rv = match.group(2).lstrip() if match.group(2) is not None else match.group(1)` = fn::filter_dict(function($value, $key) {
+    return ${1:// boolean condition};
+}, `!p snip.rv = match.group(1)`);
+endsnippet
+
+snippet "reduce ([^\s]*)(\s.*)?" "reduce iterable with function" !br
+`!p snip.rv = match.group(2).lstrip() if match.group(2) is not None else match.group(1)` = fn::reduce(function($value, $accumulator) {
+    return ${2:// reduction};
+}, ${1:$accumulator}, `!p snip.rv = match.group(1)`);
+endsnippet
+
+# testing
+snippet fakeredis "sets up the fake redis service" !b
+svc('meta')->replace('redis', new \webcore\fake_redis_service(svc('meta')));
+endsnippet
+
+snippet asse "Assert equal" !b
+$this->assertEqual(${1:$this->expected}, ${2:$this->actual});
+endsnippet
+
+snippet assne "Assert not equal" !b
+$this->assertNotEqual(${1:$this->expected}, ${2:$this->actual});
+endsnippet
+
+snippet asst "Assert true" !b
+$this->assertTrue(${1:$this->actual});
+endsnippet
+
+snippet assf "Assert false" !b
+$this->assertFalse(${1:$this->actual});
+endsnippet
+
+snippet assn "Assert null" !b
+$this->assertNull(${1:$this->actual});
+endsnippet
+
+snippet assnn "Assert not null" !b
+$this->assertNotNull(${1:$this->actual});
+endsnippet
+
+snippet assth "Assert throws" !b
+$this->assertThrows('${1:Exception}', function() use (${2:closure}) {
+    ${3:thing that throws}
+});
 endsnippet

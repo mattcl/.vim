@@ -1,0 +1,45 @@
+snippet iff "inline if" !i
+{% if ${1:CONDITION} %}${2:OUTPUT}{% endif %}
+endsnippet
+
+snippet iffe "inline if with else" !i
+{% if ${1:CONDITION} %}${2:TRUE OUTPUT}{% else %}${3:FALSE OUTPUT}{% endif %}
+endsnippet
+
+snippet css "css link" !b
+{{ css.link('${1:common/css location}') }}
+endsnippet
+
+snippet cssc "css common link" !b
+{{ css.common_link('${1:common/ location}') }}
+endsnippet
+
+snippet js "js src" !b
+{{ js.common_src('${1:common/ location}') }}
+endsnippet
+
+snippet form "output a standard form" !b
+{{ f.start(${1:action}) }}
+    {{ f.inputs(${2:inputs}) }}
+    <br />
+    {{ f.buttons() }}
+{{ f.end() }}
+endsnippet
+
+global !p
+def create_table_headers(snip, arg_str, indentation_level):
+    headers = [arg.strip() for arg in arg_str.split(',')]
+    snip.shift(2)
+    for header in headers:
+        snip.rv += '\n' + snip.mkline('<th>' + header + '</th>')
+    snip.reset_indent()
+
+endglobal
+
+snippet "table (.*)" "output a table for the given arguments" !br
+<table>
+    <tr>
+        `!p create_table_headers(snip, match.group(1), 2)`
+    </tr>
+</table>
+endsnippet
