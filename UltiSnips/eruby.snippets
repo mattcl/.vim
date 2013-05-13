@@ -1,0 +1,34 @@
+snippet er "non-outputting erb tag" !w
+<% ${1:STATEMENT} %>$0
+endsnippet
+
+snippet erb "outputting erb tag" !w
+<%= ${1:OUTPUT} %>$0
+endsnippet
+
+snippet frow "a new Foundation row" !b
+<div class="row">
+  $0
+</div>
+endsnippet
+
+snippet fcol "a new Foundation column" !b
+<div class="${1:TYPE} column">
+  $0
+</div>
+endsnippet
+
+snippet ftable "a new Foundation table" !b
+<table>
+  <thead>
+    <tr>
+      <th>${1:HEADER}</th>$0
+    </tr>
+  </thead>
+  <% ${2:COLLECTION}.each do |${3:OBJECT}| %>
+    <tr>
+      <td></td>
+    </tr>
+  <% end -%>
+</table>
+endsnippet
