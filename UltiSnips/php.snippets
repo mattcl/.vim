@@ -16,6 +16,10 @@ snippet "log (.*)" "A dusty log" br
 `!p snip.rv = "dusty_log(" + match.group(1) + ");"`
 endsnippet
 
+snippet dnc "Insert a do not commit" !w
+// DO NOT COMMIT
+endsnippet
+
 # config stuff
 snippet cget "get an imvu_config" w
 imvu_config::get(${1:CONFIG}, ${2:null});
@@ -34,24 +38,28 @@ snippet "bn ([^\s]*)" "Break if MATCH is null" !br
 `!p snip.rv = "if (!" + match.group(1) + ") {"`
     return;
 }
+$0
 endsnippet
 
 snippet "bn ([^\s]*) (.*)" "Break if MATCH is null and specify return value" !br
 `!p snip.rv = "if (!" + match.group(1) + ") {"`
     return `!p snip.rv = match.group(2)`;
 }
+$0
 endsnippet
 
 snippet "bt ([^\s]*)" "Break if MATCH is not null" !br
 `!p snip.rv = "if (" + match.group(1) + ") {"`
     return;
 }
+$0
 endsnippet
 
 snippet "bt ([^\s]*) (.*)" "Break if MATCH is not null and specify return value" !br
 `!p snip.rv = "if (" + match.group(1) + ") {"`
     return `!p snip.rv = match.group(2)`;
 }
+$0
 endsnippet
 
 snippet "arr (.*)" "Converts MATCH to array" !wr
@@ -79,24 +87,28 @@ snippet "map ([^\s]*)(\s.*)?" "map function on interable" !br
 `!p snip.rv = match.group(2).lstrip() if match.group(2) is not None else match.group(1)` = fn::map(function($value, $key) {
     return ${1:$value};
 }, `!p snip.rv = match.group(1)`);
+$0
 endsnippet
 
 snippet "filter ([^\s]*)(\s.*)?" "filter iterable on function" !br
 `!p snip.rv = match.group(2).lstrip() if match.group(2) is not None else match.group(1)` = fn::filter(function($value, $key) {
     return ${1:// boolean condition};
 }, `!p snip.rv = match.group(1)`);
+$0
 endsnippet
 
 snippet "filterd ([^\s]*)(\s.*)?" "filter iterable on function" !br
 `!p snip.rv = match.group(2).lstrip() if match.group(2) is not None else match.group(1)` = fn::filter_dict(function($value, $key) {
     return ${1:// boolean condition};
 }, `!p snip.rv = match.group(1)`);
+$0
 endsnippet
 
 snippet "reduce ([^\s]*)(\s.*)?" "reduce iterable with function" !br
 `!p snip.rv = match.group(2).lstrip() if match.group(2) is not None else match.group(1)` = fn::reduce(function($value, $accumulator) {
     return ${2:// reduction};
 }, ${1:$accumulator}, `!p snip.rv = match.group(1)`);
+$0
 endsnippet
 
 # testing
@@ -132,4 +144,5 @@ snippet assth "Assert throws" !b
 $this->assertThrows('${1:Exception}', function() use (${2:closure}) {
     ${3:thing that throws}
 });
+$0
 endsnippet
