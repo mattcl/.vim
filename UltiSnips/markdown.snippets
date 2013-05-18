@@ -1,0 +1,47 @@
+snippet head "header section" !b
+${1:HEADER}
+`!p snip.rv = '=' * len(t[1])`
+$0
+endsnippet
+
+snippet sec "section" !b
+${1:SECTION}
+`!p snip.rv = '-' * len(t[1])`
+$0
+endsnippet
+
+global !p
+def make_section_marker(match_value):
+    num = int(match_value) if match_value is not None else 3
+    return '#' * num
+endglobal
+
+snippet "sub(\d)?" "sub section" !rb
+`!p snip.rv = make_section_marker(match.group(1))` ${1:SUB SECTION} `!p snip.rv = make_section_marker(match.group(1))`
+$0
+endsnippet
+
+snippet code "code block" !b
+\`\`\`${1:LANGUAGE}
+${1:CODE}
+\`\`\`
+$0
+endsnippet
+
+snippet inl "inline code" !w
+\`${1:CODE}\`$0
+endsnippet
+
+snippet quote "quote" !b
+> ${1:QUOTE}
+
+$0
+endsnippet
+
+snippet link "link" !w
+[${1:LABEL}](${2:LOCATION})$0
+endsnippet
+
+snippet img "image" !b
+![${1:ALT}](${2:LOCATION})$0
+endsnippet

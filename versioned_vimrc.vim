@@ -7,6 +7,7 @@ filetype indent on
 set t_Co=256
 colorscheme xoria256
 set cursorline
+set colorcolumn=81
 
 " set indendation for special filetypes
 autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
