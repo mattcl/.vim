@@ -9,4 +9,5 @@ augroup filetypedetect
     au! BufNewFile,BufRead Guardfile setf ruby
     au! BufNewFile,BufRead *.ru setf ruby
     au! BufNewFile,BufRead *.tt setf eruby
+    au! BufNewFile,BufRead *.zsh-theme setf zsh
 augroup END
