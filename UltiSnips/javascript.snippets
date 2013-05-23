@@ -4,3 +4,19 @@ test('${1:EXPECTATION}', function() {
 });
 $0
 endsnippet
+
+snippet todo "Output a todo" !w
+// TODO: ${1:msg} - XXX`echo $USER` - `date +%Y-%m-%d`
+endsnippet
+
+snippet fixme "Output a fixme" !w
+// FIXME: ${1:msg} -- XXX`echo $USER` - `date +%Y-%m-%d`
+endsnippet
+
+snippet dnc "Insert a do not commit" !w
+// DO NOT COMMIT
+endsnippet
+
+snippet sel "jquery selector" !w
+\$(${1:'${2:SELECTOR}'})$0
+endsnippet
