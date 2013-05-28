@@ -34,8 +34,8 @@ let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_max_files = 40000
 
 let g:ctrlp_custom_ignore = {
-    \ 'dir': '\v[\/]\.(git|hg|svn)$',
-    \ 'file': '\v\.(exe|so|dll|txt|vert|frag|swf|png|jpg|gif|otf|wotf|eot|svg|ttf|pem|patch|pickle|psd|xpi|xrf|xsf|xsl|zip|tga|swp|swo)$'
+    \ 'dir': '\v[\/]((Ext|Exe)|(\.(git|hg|svn)))$',
+    \ 'file': '\v\.(pdf|ibb|vcxproj|list|dae|pyc|pyo|scons|ppt|xaf|bat|cfl|as|exe|so|dll|txt|vert|frag|swf|png|jpg|gif|otf|wotf|eot|svg|ttf|pem|patch|pickle|psd|xpi|xrf|xsf|xsl|zip|tga|swp|swo)$'
     \ }
 
 " tab pane stuff
