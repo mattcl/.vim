@@ -7,13 +7,17 @@ snippet fixme "Output a fixme" !w
 // FIXME: ${1:msg} -- XXX`echo $USER` - `date +%Y-%m-%d`
 endsnippet
 
-# debugging
-snippet "dump (.*)" "A dusty dump" br
-`!p snip.rv = "dusty_dump(" + match.group(1) + ");"`
+snippet comment "Output a comment" !b
+// ${1:msg} -- XXX`echo $USER` - `date +%Y-%m-%d`
 endsnippet
 
-snippet "log (.*)" "A dusty log" br
-`!p snip.rv = "dusty_log(" + match.group(1) + ");"`
+# debugging
+snippet dump "A dusty dump" !b
+dusty_dump(${1:VAR});$0
+endsnippet
+
+snippet log "A dusty log" !b
+dusty_log(${1:VAR});$0
 endsnippet
 
 snippet dnc "Insert a do not commit" !w
@@ -104,6 +108,12 @@ $0
 endsnippet
 
 # testing
+snippet test "test function" !b
+function test_${1:NAME}() {
+    ${2:// test}
+}
+$0
+endsnippet
 snippet testcust "Creates a test customer" !b
 $this->${1:cid} = customer::_test_create();
 $0
@@ -135,6 +145,10 @@ endsnippet
 
 snippet assne "Assert not equal" !b
 $this->assertNotEqual(${1:$this->expected}, ${2:$this->actual});
+endsnippet
+
+snippet assa "Assert arrays equal unordered" !b
+$this->assertEqualUnordered(${1:$this->expected}, ${2:$this->actual});
 endsnippet
 
 snippet asst "Assert true" !b
