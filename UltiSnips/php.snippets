@@ -139,6 +139,15 @@ svc('meta')->replace('redis', new \webcore\fake_redis_service(svc('meta')));
 $0
 endsnippet
 
+snippet realredis "sets up the real redis service" !b
+svc('meta')->replace('redis', new \webcore\redis_service(svc('meta')));
+$0
+endsnippet
+
+snippet svc "replace a service" !b
+svc('meta')->replace('${1:SERVICE}', new $2${3:fake_}$1_service(svc('meta')));
+endsnippet
+
 snippet asse "Assert equal" !b
 $this->assertEqual(${1:$this->expected}, ${2:$this->actual});
 endsnippet
