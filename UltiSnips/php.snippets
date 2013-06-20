@@ -34,6 +34,18 @@ imvu_config::set(${1:CONFIG}, ${2:$value});
 endsnippet
 
 # common annoying operations
+snippet sf "static function" !b
+public static function ${1:NAME}($2) {
+    ${3:// TODO: XXX`echo $USER` - `date +%Y-%m-%d`}
+}
+endsnippet
+
+snippet psf "private function" !b
+private static function ${1:NAME}($2) {
+    ${3:// TODO: XXX`echo $USER` - `date +%Y-%m-%d`}
+}
+endsnippet
+
 snippet "bn ([^\s]*)" "Break if MATCH is null" !br
 `!p snip.rv = "if (!" + match.group(1) + ") {"`
     return;

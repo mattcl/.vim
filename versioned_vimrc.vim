@@ -15,6 +15,18 @@ autocmd Filetype eruby setlocal ts=2 sts=2 sw=2
 autocmd Filetype cucumber setlocal ts=2 sts=2 sw=2
 autocmd Filetype coffee setlocal ts=2 sts=2 sw=2
 autocmd Filetype yaml setlocal ts=2 sts=2 sw=2
+autocmd Filetype php set omnifunc=phpcomplete#CompletePHP
+
+" fix ultisnips completions
+let g:ycm_key_list_select_completion = ['<C-k>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<Up>']
+let g:ycm_collect_identifiers_from_tags_files = 1
+
+" prevent preview window
+set completeopt=menu
+
+" fix phpcomplete completions
+let g:phpcomplete_complete_for_unknown_classes = 0
 
 " remove trailing whitespace on write
 autocmd BufWritePre * :%s/\s\+$//e

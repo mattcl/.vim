@@ -49,12 +49,15 @@
 [submodule "bundle/vim_cf3"]
 	path = bundle/vim_cf3
 	url = git@github.com:neilhwatson/vim_cf3.git
-[submodule "bundle/supertab"]
-	path = bundle/supertab
-	url = git@github.com:ervandew/supertab.git
 [submodule "bundle/ultisnips"]
 	path = bundle/ultisnips
 	url = git@github.com:mattcl/ultisnips.git
 [submodule "bundle/vim-markdown"]
 	path = bundle/vim-markdown
 	url = git@github.com:tpope/vim-markdown.git
+[submodule "bundle/youcompleteme"]
+	path = bundle/youcompleteme
+	url = git@github.com:Valloric/YouCompleteMe.git
+[submodule "bundle/phpcomplete.vim"]
+	path = bundle/phpcomplete.vim
+	url = git@github.com:shawncplus/phpcomplete.vim.git
