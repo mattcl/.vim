@@ -33,6 +33,16 @@ snippet cset "set an imvu_config" !b
 imvu_config::set(${1:CONFIG}, ${2:$value});
 endsnippet
 
+snippet cfunc "function that uses a config or default" !b
+const $2::$3 = '${6:$2.$1}';
+const $4::$5 = ${7:'${8:default value}'};
+
+public static function get_${1:something}() {
+    return imvu_config::get(${2:`!p snip.rv = re.sub('\..*php', '', fn)`}::${3:`!p snip.rv = t[1].upper()`_KEY}, ${4:$2}::${5:`!p snip.rv = t[1].upper()`_DEFAULT});
+}
+
+endsnippet
+
 # common annoying operations
 snippet sf "static function" !b
 public static function ${1:NAME}($2) {
