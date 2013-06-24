@@ -10,4 +10,5 @@ augroup filetypedetect
     au! BufNewFile,BufRead *.ru setf ruby
     au! BufNewFile,BufRead *.tt setf eruby
     au! BufNewFile,BufRead *.zsh-theme setf zsh
+    au! BufNewFile,BufRead *.md setf markdown
 augroup END

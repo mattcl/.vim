@@ -1,0 +1,35 @@
+# comments
+snippet todo "Output a todo" !b
+# TODO: ${1:msg} - XXX`echo $USER` - `date +%Y-%m-%d`
+endsnippet
+
+snippet fixme "Output a fixme" !w
+# FIXME: ${1:msg} -- XXX`echo $USER` - `date +%Y-%m-%d`
+endsnippet
+
+snippet comment "Output a comment" !b
+# ${1:msg} -- XXX`echo $USER` - `date +%Y-%m-%d`
+endsnippet
+
+# general
+snippet vp "validates_presence_of" !b
+validates_presence_of ${1::something}
+endsnippet
+
+snippet bt "belongs_to" !b
+belongs_to ${1::something}
+endsnippet
+
+snippet hm "has_many" !b
+has_many ${1::something}
+endsnippet
+
+snippet habtm "has_and_belongs_tomany" !b
+has_an_belongs_to_many ${1::something}
+endsnippet
+
+snippet ht "has_many :through" !b
+has_many ${1::something}, :through => ${2::something_else}
+endsnippet
+
+# tests
