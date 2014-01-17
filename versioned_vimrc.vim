@@ -1,16 +1,47 @@
 set number
-" --------- pathogen --------
-call pathogen#infect()
-" --------- general settings ----------
+syntax off
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle
+" required! 
+Bundle 'gmarik/vundle'
+
+Bundle 'bling/vim-airline'
+Bundle 'godlygeek/tabular'
+Bundle 'goldfeld/vim-seek'
+Bundle 'jelera/vim-javascript-syntax'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'kien/ctrlp.vim'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'mileszs/ack.vim'
+Bundle 'myusuf3/numbers.vim'
+Bundle 'noprompt/vim-yardoc'
+Bundle 'rodjek/vim-puppet'
+Bundle 'scrooloose/syntastic'
+Bundle 'shawncplus/phpcomplete.vim'
+Bundle 'SirVer/ultisnips'
+Bundle 'tpope/vim-abolish'
+Bundle 'tpope/vim-commentary'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-markdown'
+Bundle 'tpope/vim-rails'
+Bundle 'tpope/vim-repeat'
+Bundle 'tpope/vim-surround'
+Bundle 'Valloric/YouCompleteMe'
+
 syntax on
 filetype on
-filetype indent on
+filetype plugin indent on
 set t_Co=256
 colorscheme xoria256
 set cursorline
 set colorcolumn=80
 set spell spelllang=en_us
 set spellcapcheck=
+
+set ttimeoutlen=50
 
 " set indendation for special filetypes
 autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
@@ -49,6 +80,7 @@ let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_arg_map = 1
 let g:ctrlp_max_height = 20
+let g:ctrlp_root_markers = ['.ctrlp']
 " the directory at work is ridiculously huge
 let g:ctrlp_max_files = 40000
 
