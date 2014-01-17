@@ -1,3 +1,4 @@
+set number
 " --------- pathogen --------
 call pathogen#infect()
 " --------- general settings ----------
@@ -7,7 +8,9 @@ filetype indent on
 set t_Co=256
 colorscheme xoria256
 set cursorline
-set colorcolumn=81
+set colorcolumn=80
+set spell spelllang=en_us
+set spellcapcheck=
 
 " set indendation for special filetypes
 autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
@@ -34,7 +37,7 @@ set completeopt=menu
 let g:phpcomplete_complete_for_unknown_classes = 0
 
 " remove trailing whitespace on write
-autocmd BufWritePre * :%s/\s\+$//e
+" autocmd BufWritePre * :%s/\s\+$//e
 
 " toggle nerdtree
 map <F2> :NERDTreeToggle \| :silent NERDTreeMirror<CR>
@@ -46,7 +49,6 @@ let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_arg_map = 1
 let g:ctrlp_max_height = 20
-let g:ctrlp_clear_cache_on_exit = 0
 " the directory at work is ridiculously huge
 let g:ctrlp_max_files = 40000
 
@@ -71,8 +73,8 @@ vnoremap < <gv
 vnoremap > >gv
 
 " spaces instead of tabs, etc
-set shiftwidth=4
-set tabstop=4
+set shiftwidth=2
+set tabstop=2
 set expandtab
 set autoindent
 
