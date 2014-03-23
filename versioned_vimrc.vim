@@ -5,10 +5,11 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 " let Vundle manage Vundle
-" required! 
+" required!
 Bundle 'gmarik/vundle'
 
 Bundle 'bling/vim-airline'
+Bundle 'dougireton/vim-chef'
 Bundle 'godlygeek/tabular'
 Bundle 'goldfeld/vim-seek'
 Bundle 'jelera/vim-javascript-syntax'
@@ -68,7 +69,7 @@ set completeopt=menu
 let g:phpcomplete_complete_for_unknown_classes = 0
 
 " remove trailing whitespace on write
-" autocmd BufWritePre * :%s/\s\+$//e
+autocmd BufWritePre * :%s/\s\+$//e
 
 " toggle nerdtree
 map <F2> :NERDTreeToggle \| :silent NERDTreeMirror<CR>
