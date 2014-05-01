@@ -9,6 +9,7 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 Bundle 'bling/vim-airline'
+Bundle 'dougireton/vim-chef'
 Bundle 'godlygeek/tabular'
 Bundle 'goldfeld/vim-seek'
 Bundle 'jelera/vim-javascript-syntax'
