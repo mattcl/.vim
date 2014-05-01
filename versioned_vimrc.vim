@@ -5,7 +5,7 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 " let Vundle manage Vundle
-" required! 
+" required!
 Bundle 'gmarik/vundle'
 
 Bundle 'bling/vim-airline'
@@ -30,6 +30,7 @@ Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
 Bundle 'Valloric/YouCompleteMe'
+Bundle 'vim-ruby/vim-ruby'
 
 syntax on
 filetype on
@@ -42,6 +43,8 @@ set spell spelllang=en_us
 set spellcapcheck=
 
 set ttimeoutlen=50
+
+let g:airline_powerline_fonts = 1
 
 " set indendation for special filetypes
 autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
@@ -68,7 +71,7 @@ set completeopt=menu
 let g:phpcomplete_complete_for_unknown_classes = 0
 
 " remove trailing whitespace on write
-" autocmd BufWritePre * :%s/\s\+$//e
+autocmd BufWritePre * :%s/\s\+$//e
 
 " toggle nerdtree
 map <F2> :NERDTreeToggle \| :silent NERDTreeMirror<CR>
@@ -140,6 +143,9 @@ vmap <Leader>aa :Tabularize /=><CR>
 " Don't put two spaces between : and the value
 nmap <Leader>a: :Tabularize /:\zs/l1c0<CR>
 vmap <Leader>a: :Tabularize /:\zs/l1c0<CR>
+
+nmap <Leader>a, :Tabularize /,\zs/l1c0<CR>
+vmap <Leader>a, :Tabularize /,\zs/l1c0<CR>
 
 " Easy motion
 let g:EasyMotion_leader_key = '<leader>'
