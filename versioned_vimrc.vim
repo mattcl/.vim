@@ -13,6 +13,7 @@ Bundle 'dougireton/vim-chef'
 Bundle 'godlygeek/tabular'
 Bundle 'goldfeld/vim-seek'
 Bundle 'jelera/vim-javascript-syntax'
+Bundle 'junegunn/seoul256.vim'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'kien/ctrlp.vim'
 Bundle 'Lokaltog/vim-easymotion'
@@ -37,7 +38,11 @@ syntax on
 filetype on
 filetype plugin indent on
 set t_Co=256
-colorscheme xoria256
+
+let g:seoul256_background = 233
+
+colorscheme seoul256
+" colorscheme xoria256
 set cursorline
 set colorcolumn=80
 set spell spelllang=en_us
