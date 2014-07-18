@@ -9,6 +9,7 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 Bundle 'bling/vim-airline'
+Bundle 'dhruvasagar/vim-table-mode'
 Bundle 'dougireton/vim-chef'
 Bundle 'godlygeek/tabular'
 Bundle 'goldfeld/vim-seek'
@@ -41,8 +42,8 @@ set t_Co=256
 
 let g:seoul256_background = 233
 
-colorscheme seoul256
-" colorscheme xoria256
+" colorscheme seoul256
+colorscheme xoria256
 set cursorline
 set colorcolumn=80
 set spell spelllang=en_us
@@ -95,7 +96,7 @@ let g:ctrlp_max_files = 40000
 
 let g:ctrlp_custom_ignore = {
     \ 'dir': '\v[\/]((Ext|Exe)|(\.(git|hg|svn)))$',
-    \ 'file': '\v\.(pdf|ibb|vcxproj|list|dae|pyc|pyo|scons|ppt|xaf|bat|cfl|as|exe|so|dll|txt|vert|frag|swf|png|jpg|gif|otf|wotf|eot|svg|ttf|pem|patch|pickle|psd|xpi|xrf|xsf|xsl|zip|tga|swp|swo)$'
+    \ 'file': '\v\.(pdf|ibb|vcxproj|list|dae|pyc|pyo|scons|ppt|xaf|bat|cfl|as|exe|so|dll|vert|frag|swf|png|jpg|gif|otf|wotf|eot|svg|ttf|pem|patch|pickle|psd|xpi|xrf|xsf|xsl|zip|tga|swp|swo)$'
     \ }
 
 " tab pane stuff
