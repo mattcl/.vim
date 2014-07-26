@@ -18,6 +18,7 @@ Bundle 'junegunn/seoul256.vim'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'kien/ctrlp.vim'
 Bundle 'Lokaltog/vim-easymotion'
+Bundle 'mattn/emmet-vim'
 Bundle 'mileszs/ack.vim'
 Bundle 'myusuf3/numbers.vim'
 Bundle 'noprompt/vim-yardoc'
@@ -99,6 +100,7 @@ let g:ctrlp_custom_ignore = {
     \ 'file': '\v\.(pdf|ibb|vcxproj|list|dae|pyc|pyo|scons|ppt|xaf|bat|cfl|as|exe|so|dll|vert|frag|swf|png|jpg|gif|otf|wotf|eot|svg|ttf|pem|patch|pickle|psd|xpi|xrf|xsf|xsl|zip|tga|swp|swo)$'
     \ }
 
+
 " tab pane stuff
 set showtabline=2
 command T tabnew
@@ -156,6 +158,10 @@ vmap <Leader>a, :Tabularize /,\zs/l1c0<CR>
 
 " Easy motion
 let g:EasyMotion_leader_key = '<leader>'
+
+" Emmet
+let g:user_emmet_leader_key = '<leader>'
+let g:user_emmet_mode='iv'
 
 " misc
 set backspace=indent,eol,start
