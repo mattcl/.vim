@@ -54,6 +54,9 @@ set ttimeoutlen=50
 
 let g:airline_powerline_fonts = 1
 
+" set leader to ','
+let mapleader=','
+
 " set indendation for special filetypes
 autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
 autocmd Filetype eruby setlocal ts=2 sts=2 sw=2
@@ -100,7 +103,6 @@ let g:ctrlp_custom_ignore = {
     \ 'file': '\v\.(pdf|ibb|vcxproj|list|dae|pyc|pyo|scons|ppt|xaf|bat|cfl|as|exe|so|dll|vert|frag|swf|png|jpg|gif|otf|wotf|eot|svg|ttf|pem|patch|pickle|psd|xpi|xrf|xsf|xsl|zip|tga|swp|swo)$'
     \ }
 
-
 " tab pane stuff
 set showtabline=2
 command T tabnew
@@ -122,6 +124,9 @@ set tabstop=2
 set expandtab
 set autoindent
 
+" split lines
+nnoremap K i<cr><esc>^mwgk:silent! s/\v +$//<cr>:noh<cr>`w
+
 " searching stuff
 set ignorecase
 set smartcase
@@ -140,7 +145,9 @@ nnoremap N Nzz
 nnoremap + <C-a>
 nnoremap - <C-x>
 
-let mapleader=','
+" show invisible characters
+set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
+nnoremap <leader>i :set list!<cr>
 
 " mappings for Tabular.vim
 nmap <Leader>a= :Tabularize /=<CR>
