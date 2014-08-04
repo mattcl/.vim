@@ -164,6 +164,9 @@ nnoremap N Nzz
 nnoremap + <C-a>
 nnoremap - <C-x>
 
+" close quickfix
+nnoremap <Leader>q :ccl<cr>
+
 " show invisible characters
 set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
 nnoremap <leader>i :set list!<cr>
