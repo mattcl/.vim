@@ -54,11 +54,13 @@ set t_Co=256
 set background=dark
 
 let g:seoul256_background = 233
+let g:gruvbox_italic = 0
 
 " colorscheme seoul256
-" colorscheme gruvbox
+colorscheme gruvbox
 " colorscheme kolor
-colorscheme xoria256
+" colorscheme xoria256
+"
 
 set cursorline
 set colorcolumn=80
