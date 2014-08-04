@@ -60,7 +60,10 @@ let g:gruvbox_italic = 0
 colorscheme gruvbox
 " colorscheme kolor
 " colorscheme xoria256
-"
+
+" don't display '|' characters on vertical splits
+" There is a significant space after the backslash
+set fillchars+=vert:\ | " the '|' here separates commands
 
 set cursorline
 set colorcolumn=80
@@ -76,7 +79,7 @@ let g:airline_powerline_fonts = 1
 let mapleader=','
 
 
-" set indendation for special filetypes
+" set indentation for special file types
 autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
 autocmd Filetype eruby setlocal ts=2 sts=2 sw=2
 autocmd Filetype cucumber setlocal ts=2 sts=2 sw=2
