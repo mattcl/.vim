@@ -8,18 +8,23 @@ call vundle#rc()
 " required!
 Bundle 'gmarik/vundle'
 
+Bundle 'baskerville/bubblegum'
 Bundle 'bling/vim-airline'
 Bundle 'dhruvasagar/vim-table-mode'
 Bundle 'dougireton/vim-chef'
 Bundle 'godlygeek/tabular'
 Bundle 'goldfeld/vim-seek'
+Bundle 'hdima/python-syntax'
 Bundle 'jelera/vim-javascript-syntax'
+Bundle 'jonathanfilip/vim-lucius'
 Bundle 'junegunn/seoul256.vim'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'kien/ctrlp.vim'
+Bundle 'Lokaltog/vim-distinguished'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'mattn/emmet-vim'
 Bundle 'mileszs/ack.vim'
+Bundle 'morhetz/gruvbox'
 Bundle 'myusuf3/numbers.vim'
 Bundle 'noprompt/vim-yardoc'
 Bundle 'rodjek/vim-puppet'
@@ -39,16 +44,22 @@ Bundle 'tpope/vim-vividchalk'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'w0ng/vim-hybrid'
+Bundle 'zeis/vim-kolor'
 
 syntax on
 filetype on
 filetype plugin indent on
 set t_Co=256
 
+set background=dark
+
 let g:seoul256_background = 233
 
 " colorscheme seoul256
+" colorscheme gruvbox
+" colorscheme kolor
 colorscheme xoria256
+
 set cursorline
 set colorcolumn=80
 set spell spelllang=en_us
@@ -56,10 +67,12 @@ set spellcapcheck=
 
 set ttimeoutlen=50
 
+let python_highlight_all = 1
 let g:airline_powerline_fonts = 1
 
 " set leader to ','
 let mapleader=','
+
 
 " set indendation for special filetypes
 autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
