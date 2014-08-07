@@ -81,12 +81,20 @@ let mapleader=','
 
 " set indentation for special file types
 autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
+autocmd Filetype python setlocal ts=2 sts=2 sw=2
 autocmd Filetype eruby setlocal ts=2 sts=2 sw=2
 autocmd Filetype cucumber setlocal ts=2 sts=2 sw=2
 autocmd Filetype coffee setlocal ts=2 sts=2 sw=2
 autocmd Filetype yaml setlocal ts=2 sts=2 sw=2
 autocmd Filetype php set omnifunc=phpcomplete#CompletePHP
 
+" set dispatch for file types
+autocmd FileType python let b:dispatch = 'python %'
+autocmd FileType ruby let b:dispatch = 'ruby %'
+
+" dispatch default bindings
+nnoremap <F9> :Dispatch<CR>
+nnoremap <leader>r :Dispatch<CR>
 
 " fix ultisnips completions
 let g:UltiSnipsExpandTrigger="<C-j>"
