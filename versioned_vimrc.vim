@@ -54,8 +54,9 @@ set t_Co=256
 
 set background=dark
 
-let g:seoul256_background = 233
-let g:gruvbox_italic = 0
+let g:seoul256_background=233
+let g:gruvbox_italic=0
+let g:gruvbox_contrast='hard'
 
 " colorscheme seoul256
 colorscheme gruvbox
@@ -92,10 +93,14 @@ autocmd Filetype php set omnifunc=phpcomplete#CompletePHP
 " set dispatch for file types
 autocmd FileType python let b:dispatch = 'python %'
 autocmd FileType ruby let b:dispatch = 'ruby %'
+autocmd FileType puppet let b:dispatch = 'vagrant provision'
 
 " dispatch default bindings
 nnoremap <F9> :Dispatch<CR>
 nnoremap <leader>r :Dispatch<CR>
+
+" syntastic checkers
+let g:syntastic_puppet_checkers = ['puppetlint']
 
 " fix ultisnips completions
 let g:UltiSnipsExpandTrigger="<C-j>"
