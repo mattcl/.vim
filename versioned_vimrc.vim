@@ -185,7 +185,7 @@ nnoremap - <C-x>
 nnoremap <Leader>q :ccl<cr>
 
 " show invisible characters
-set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
+set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮,trail:·
 nnoremap <leader>i :set list!<cr>
 
 " mappings for Tabular.vim
