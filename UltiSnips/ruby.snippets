@@ -5,3 +5,7 @@ endsnippet
 snippet "(\S+)\.map" ".map { |<element>| <block> }" !r
 `!p snip.rv = match.group(1) `.map(${1:&:${2:fn}})$0
 endsnippet
+
+snippet long "allow long line" !w
+# rubocop:disable Metrics/LineLength
+endsnippet
