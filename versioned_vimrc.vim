@@ -22,6 +22,7 @@ Plugin 'junegunn/seoul256.vim'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'Keithbsmiley/rspec.vim'
 Plugin 'kien/ctrlp.vim'
+Plugin 'klen/python-mode'
 Plugin 'Lokaltog/vim-distinguished'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'markcornick/vim-terraform'
@@ -87,7 +88,7 @@ let mapleader=','
 
 " set indentation for special file types
 autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
-autocmd Filetype python setlocal ts=2 sts=2 sw=2
+autocmd Filetype python setlocal ts=4 sts=4 sw=4
 autocmd Filetype eruby setlocal ts=2 sts=2 sw=2
 autocmd Filetype cucumber setlocal ts=2 sts=2 sw=2
 autocmd Filetype coffee setlocal ts=2 sts=2 sw=2
@@ -229,6 +230,9 @@ map Y y$
 
 " C stuf
 set cindent
+
+" python-mode overrides
+let g:pymode_run_bin = '<C-S-r>'
 
 " change filename
 command! -nargs=1 AddExt execute "saveas ".expand("%:p").<q-args>
