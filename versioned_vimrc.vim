@@ -148,7 +148,17 @@ let g:ctrlp_custom_ignore = {
     \ }
 
 " FZF
-nmap <c-p> :FZF<cr>
+function FuzzyFind()
+  " Contains a null-byte that is stripped.
+  let gitparent=system('git rev-parse --show-toplevel')[:-2]
+  if empty(matchstr(gitparent, '^fatal:.*'))
+    silent execute ':FZF ' . gitparent
+  else
+    silent execute ':FZF .'
+  endif
+endfunction
+
+nmap <c-p> :call FuzzyFind()<cr>
 
 " Search lines in all open buffers
 function! s:line_handler(l)
@@ -186,7 +196,7 @@ function! s:bufopen(e)
   execute 'buffer' matchstr(a:e, '^[ 0-9]*')
 endfunction
 
-nnoremap <silent> <Leader>p :call fzf#run({
+nnoremap <silent> <c-i> :call fzf#run({
 \   'source':  reverse(<sid>buflist()),
 \   'sink':    function('<sid>bufopen'),
 \   'options': '+m',
