@@ -66,10 +66,15 @@ let g:seoul256_background=233
 let g:gruvbox_italic=0
 let g:gruvbox_contrast='hard'
 
-" colorscheme seoul256
-colorscheme gruvbox
-" colorscheme kolor
-" colorscheme xoria256
+" try-catch here to solve chicken and egg problem when chef installs plugins
+" on a new machine
+try
+  " colorscheme seoul256
+  colorscheme gruvbox
+  " colorscheme kolor
+  " colorscheme xoria256
+catch
+endtry
 
 " don't display '|' characters on vertical splits
 " There is a significant space after the backslash
@@ -84,6 +89,7 @@ set ttimeoutlen=50
 
 let python_highlight_all = 1
 let g:airline_powerline_fonts = 1
+let g:airline_theme='tomorrow'
 
 " set leader to ','
 let mapleader=','
