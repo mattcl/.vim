@@ -15,7 +15,7 @@ Plugin 'dhruvasagar/vim-table-mode'
 Plugin 'dougireton/vim-chef'
 Plugin 'godlygeek/tabular'
 Plugin 'goldfeld/vim-seek'
-Plugin 'hdima/python-syntax'
+" Plugin 'hdima/python-syntax'
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'jonathanfilip/vim-lucius'
 Plugin 'junegunn/seoul256.vim'
@@ -87,7 +87,7 @@ set spellcapcheck=
 
 set ttimeoutlen=50
 
-let python_highlight_all = 1
+" let python_highlight_all = 1
 let g:airline_powerline_fonts = 1
 let g:airline_theme='tomorrow'
 
@@ -115,6 +115,7 @@ nnoremap <leader>r :Dispatch<CR>
 
 " syntastic checkers
 let g:syntastic_puppet_checkers = ['puppetlint']
+let g:syntastic_mode_map = { 'passive_filetypes': ['python'] }
 
 " fix ultisnips completions
 let g:UltiSnipsExpandTrigger="<C-j>"
@@ -130,6 +131,15 @@ set completeopt=menu
 
 " fix phpcomplete completions
 let g:phpcomplete_complete_for_unknown_classes = 0
+
+" pymode
+let g:pymode_lint_on_write = 1
+let g:pymode_lint_message = 1
+let g:pymode_folding = 0
+let g:pymode_syntax = 1
+let g:pymode_syntax_all = 1
+let g:pymode_lint_cwindow = 0
+let g:pymode_options_max_line_length = 119
 
 " remove trailing whitespace on write
 autocmd BufWritePre * :%s/\s\+$//e
@@ -157,7 +167,19 @@ let g:ctrlp_custom_ignore = {
 function FuzzyFind()
   " Contains a null-byte that is stripped.
   let gitparent=system('git rev-parse --show-toplevel')[:-2]
+
+  " search for .fzf files
   if empty(matchstr(gitparent, '^fatal:.*'))
+    let fzf_marker_stop_dir=gitparent
+  else
+    let fzf_marker_stop_dir=''
+  endif
+  let fzf_marker=findfile('.fzf', '.;' . fzf_marker_stop_dir)
+
+  " if a .fzf file exists, it overrides the git repo
+  if !empty(fzf_marker)
+    silent execute ':FZF ' . fnamemodify(fzf_marker, ':p:h')
+  elseif empty(matchstr(gitparent, '^fatal:.*'))
     silent execute ':FZF ' . gitparent
   else
     silent execute ':FZF .'
@@ -297,7 +319,7 @@ map Y y$
 set cindent
 
 " python-mode overrides
-let g:pymode_run_bin = '<C-S-r>'
+let g:pymode_run_bind = '<C-S-F8>'
 
 " change filename
 command! -nargs=1 AddExt execute "saveas ".expand("%:p").<q-args>
