@@ -1,0 +1,34 @@
+snippet fix "fixture function" !b
+@pytest.fixture$3
+def ${1:FIXTURE_NAME}($2):$0
+endsnippet
+
+snippet afix "autouse fixture function" !b
+@pytest.fixture(autouse=True$3)
+def ${1:FIXTURE_NAME}($2):$0
+endsnippet
+
+snippet sfix "session scoped fixture function" !b
+@pytest.fixture(scope='session'$3)
+def ${1:FIXTURE_NAME}($2):$0
+endsnippet
+
+snippet desc "describe function" !b
+def describe_${1:SOMETHING}():$0
+endsnippet
+
+snippet con "describe function" !b
+def context_${1:SOME_CONTEXT}():$0
+endsnippet
+
+snippet xfail "mark as xfail" !b
+@pytest.mark.xfail(reason="${1:REASON}")$0
+endsnippet
+
+snippet todo "todo" !w
+# TODO: ${1:msg} - MCL - `date +%Y-%m-%d`
+endsnippet
+
+snippet fixme "fixme" !w
+# FIXME: ${1:msg} - MCL - `date +%Y-%m-%d`
+endsnippet

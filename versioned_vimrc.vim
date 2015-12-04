@@ -13,6 +13,7 @@ Plugin 'baskerville/bubblegum'
 Plugin 'bling/vim-airline'
 Plugin 'dhruvasagar/vim-table-mode'
 Plugin 'dougireton/vim-chef'
+" Plugin 'ervandew/supertab'
 Plugin 'godlygeek/tabular'
 Plugin 'goldfeld/vim-seek'
 " Plugin 'hdima/python-syntax'
@@ -98,6 +99,7 @@ let mapleader=','
 " set indentation for special file types
 autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
 autocmd Filetype python setlocal ts=4 sts=4 sw=4
+autocmd Filetype json setlocal ts=4 sts=4 sw=4
 autocmd Filetype eruby setlocal ts=2 sts=2 sw=2
 autocmd Filetype cucumber setlocal ts=2 sts=2 sw=2
 autocmd Filetype coffee setlocal ts=2 sts=2 sw=2
@@ -125,6 +127,15 @@ let g:UltiSnipsJumpBackwardTrigger="<C-k>"
 let g:ycm_key_list_select_completion = ['<TAB>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<Up>']
 let g:ycm_collect_identifiers_from_tags_files = 1
+" make YCM compatible with UltiSnips (using supertab)
+" let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+" let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+" let g:SuperTabDefaultCompletionType = '<C-n>'
+
+" " better key bindings for UltiSnipsExpandTrigger
+" let g:UltiSnipsExpandTrigger = "<cr>"
+" let g:UltiSnipsJumpForwardTrigger = "<c-j>"
+" let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
 
 " prevent preview window
 set completeopt=menu
@@ -140,6 +151,8 @@ let g:pymode_syntax = 1
 let g:pymode_syntax_all = 1
 let g:pymode_lint_cwindow = 0
 let g:pymode_options_max_line_length = 119
+let g:pymode_rope_complete_on_dot = 0
+let g:pymode_rope_completion = 0
 
 " remove trailing whitespace on write
 autocmd BufWritePre * :%s/\s\+$//e
