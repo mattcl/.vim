@@ -53,6 +53,8 @@ Plugin 'zeis/vim-kolor'
 
 call vundle#end()
 
+let $FZF_DEFAULT_COMMAND = 'ag -l -g "" --path-to-agignore=~/.agignore'
+
 " fzf
 set rtp+=~/.fzf
 
@@ -116,8 +118,12 @@ nnoremap <F9> :Dispatch<CR>
 nnoremap <leader>r :Dispatch<CR>
 
 " syntastic checkers
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
 let g:syntastic_puppet_checkers = ['puppetlint']
-let g:syntastic_mode_map = { 'passive_filetypes': ['python'] }
+" let g:syntastic_mode_map = { 'passive_filetypes': ['python'] }
+let g:syntastic_python_checkers = ['flake8']
 
 " fix ultisnips completions
 let g:UltiSnipsExpandTrigger="<C-j>"
@@ -144,13 +150,13 @@ set completeopt=menu
 let g:phpcomplete_complete_for_unknown_classes = 0
 
 " pymode
-let g:pymode_lint_on_write = 1
-let g:pymode_lint_message = 1
+let g:pymode_lint = 0
 let g:pymode_folding = 0
 let g:pymode_syntax = 1
 let g:pymode_syntax_all = 1
 let g:pymode_lint_cwindow = 0
 let g:pymode_options_max_line_length = 119
+let g:pymode_rope = 0
 let g:pymode_rope_complete_on_dot = 0
 let g:pymode_rope_completion = 0
 

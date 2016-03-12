@@ -1,24 +1,48 @@
+snippet class "make a class" !b
+import ir_test.util.common_info_mixin
+
+
+class ${1:`!p snip.rv = ''.join(x.title() for x in re.sub('\..*py', '', fn).split('_'))`}(ir_test.util.common_info_mixin.CommonInfoMixin):
+	${2:pass}$0
+endsnippet
+
 snippet fix "fixture function" !b
-@pytest.fixture$3
-def ${1:FIXTURE_NAME}($2):$0
+@pytest.fixture
+def ${1:FIXTURE_NAME}($0):$2
 endsnippet
 
 snippet afix "autouse fixture function" !b
-@pytest.fixture(autouse=True$3)
-def ${1:FIXTURE_NAME}($2):$0
+@pytest.fixture(autouse=True)
+def ${1:FIXTURE_NAME}($0):$2
 endsnippet
 
 snippet sfix "session scoped fixture function" !b
-@pytest.fixture(scope='session'$3)
-def ${1:FIXTURE_NAME}($2):$0
+@pytest.fixture(scope='session')
+def ${1:FIXTURE_NAME}($0):$2
 endsnippet
 
 snippet desc "describe function" !b
 def describe_${1:SOMETHING}():$0
 endsnippet
 
-snippet con "describe function" !b
+snippet con "describe context" !b
 def context_${1:SOME_CONTEXT}():$0
+endsnippet
+
+snippet "patch (.*)" "patch MATCH" !br
+patched = mocker.patch('`!p snip.rv = match.group(1)`')
+patched.return_value = ${1:RETURN_VALUE}
+return patched$0
+endsnippet
+
+snippet "opatch (.*)" "patch some object MATCH" !br
+patched = mocker.patch.object(`!p snip.rv = match.group(1)`, '${1:FUNCTION}')
+patched.return_value = ${2:RETURN_VALUE}
+return patched$0
+endsnippet
+
+snippet comfix "command fixture args" !w
+mocked_command, mocked_command_instance$0
 endsnippet
 
 snippet xfail "mark as xfail" !b
@@ -29,6 +53,19 @@ snippet todo "todo" !w
 # TODO: ${1:msg} - MCL - `date +%Y-%m-%d`
 endsnippet
 
+snippet dnc "do not commit" !w
+# DO NOT COMMIT
+endsnippet
+
 snippet fixme "fixme" !w
 # FIXME: ${1:msg} - MCL - `date +%Y-%m-%d`
 endsnippet
+
+snippet rip "random ip" !w
+`!p if not snip.c: snip.rv = random_ip()`$0
+endsnippet
+
+global !p
+def random_ip():
+	return ".".join(map(str, (random.randint(1, 255) for _ in range(4))))
+endglobal
