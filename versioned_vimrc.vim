@@ -11,19 +11,21 @@ Plugin 'gmarik/Vundle.vim'
 
 Plugin 'baskerville/bubblegum'
 Plugin 'bling/vim-airline'
+Plugin 'b4b4r07/vim-hcl'
 Plugin 'dhruvasagar/vim-table-mode'
 Plugin 'dougireton/vim-chef'
-" Plugin 'ervandew/supertab'
+Plugin 'faith/vim-go'
+Plugin 'FooSoft/vim-argwrap'
 Plugin 'godlygeek/tabular'
 Plugin 'goldfeld/vim-seek'
-" Plugin 'hdima/python-syntax'
+Plugin 'jceb/vim-orgmode'
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'jonathanfilip/vim-lucius'
 Plugin 'junegunn/seoul256.vim'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'Keithbsmiley/rspec.vim'
-" Plugin 'kien/ctrlp.vim'
 Plugin 'klen/python-mode'
+Plugin 'lervag/vimtex'
 Plugin 'Lokaltog/vim-distinguished'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'markcornick/vim-terraform'
@@ -36,6 +38,7 @@ Plugin 'rodjek/vim-puppet'
 Plugin 'scrooloose/syntastic'
 Plugin 'shawncplus/phpcomplete.vim'
 Plugin 'SirVer/ultisnips'
+Plugin 'wellle/targets.vim'
 Plugin 'tomasr/molokai'
 Plugin 'tpope/vim-abolish'
 Plugin 'tpope/vim-commentary'
@@ -106,6 +109,7 @@ autocmd Filetype eruby setlocal ts=2 sts=2 sw=2
 autocmd Filetype cucumber setlocal ts=2 sts=2 sw=2
 autocmd Filetype coffee setlocal ts=2 sts=2 sw=2
 autocmd Filetype yaml setlocal ts=2 sts=2 sw=2
+autocmd Filetype go setlocal ts=8 sts=8 sw=8 noexpandtab
 autocmd Filetype php set omnifunc=phpcomplete#CompletePHP
 
 " set dispatch for file types
@@ -122,8 +126,9 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 let g:syntastic_puppet_checkers = ['puppetlint']
-" let g:syntastic_mode_map = { 'passive_filetypes': ['python'] }
 let g:syntastic_python_checkers = ['flake8']
+" let g:syntastic_ruby_checkers = ['rubocop']
+" let g:syntastic_ruby_rubocop_exec = '/home/matt/scripts/rubocop.sh'
 
 " fix ultisnips completions
 let g:UltiSnipsExpandTrigger="<C-j>"
@@ -133,15 +138,6 @@ let g:UltiSnipsJumpBackwardTrigger="<C-k>"
 let g:ycm_key_list_select_completion = ['<TAB>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<Up>']
 let g:ycm_collect_identifiers_from_tags_files = 1
-" make YCM compatible with UltiSnips (using supertab)
-" let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-" let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-" let g:SuperTabDefaultCompletionType = '<C-n>'
-
-" " better key bindings for UltiSnipsExpandTrigger
-" let g:UltiSnipsExpandTrigger = "<cr>"
-" let g:UltiSnipsJumpForwardTrigger = "<c-j>"
-" let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
 
 " prevent preview window
 set completeopt=menu
@@ -150,6 +146,7 @@ set completeopt=menu
 let g:phpcomplete_complete_for_unknown_classes = 0
 
 " pymode
+" Disable most of the completion and linting, as I'm relying on syntastic/jedi
 let g:pymode_lint = 0
 let g:pymode_folding = 0
 let g:pymode_syntax = 1
@@ -313,6 +310,9 @@ vmap <Leader>a: :Tabularize /:\zs/l1c0<CR>
 nmap <Leader>a, :Tabularize /,\zs/l1c0<CR>
 vmap <Leader>a, :Tabularize /,\zs/l1c0<CR>
 
+" argwrap
+nnoremap <silent> <leader>c :ArgWrap<CR>
+
 " Easy motion
 let g:EasyMotion_leader_key = '<leader>'
 
@@ -360,12 +360,6 @@ command! -nargs=1 SDR silent call s:RunShellCommand("svn diff -x -w -r ".<args>.
 
 " svn blame. select block in visual mode and type gl
 vmap gl :<C-U>silent Shell svn blame <C-R>=expand("%:p") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p <CR>
-
-" access the apache access log
-command! -nargs=1 AL silent call s:RunShellCommand("scp cit@".<q-args>.":/var/log/apache2/access.log /tmp/ && cat /tmp/access.log", "this param will open in the same window") | set filetype=apache_log
-
-" access the apache access log
-command! -nargs=1 ALB silent call s:RunShellCommand("scp cit@".<q-args>.":/var/log/apache2/access.log.1 /tmp/ && cat /tmp/access.log.1", "this param will open in the same window") | set filetype=apache_log
 
 " better shell command
 command! -complete=shellcmd -nargs=+ Shell call s:RunShellCommand(<q-args>)
