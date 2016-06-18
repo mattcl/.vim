@@ -14,7 +14,7 @@ Plugin 'bling/vim-airline'
 Plugin 'b4b4r07/vim-hcl'
 Plugin 'dhruvasagar/vim-table-mode'
 Plugin 'dougireton/vim-chef'
-Plugin 'faith/vim-go'
+Plugin 'fatih/vim-go'
 Plugin 'FooSoft/vim-argwrap'
 Plugin 'godlygeek/tabular'
 Plugin 'goldfeld/vim-seek'
@@ -29,9 +29,11 @@ Plugin 'lervag/vimtex'
 Plugin 'Lokaltog/vim-distinguished'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'markcornick/vim-terraform'
+Plugin 'mattn/calendar-vim'
 Plugin 'mattn/emmet-vim'
 Plugin 'mileszs/ack.vim'
 Plugin 'morhetz/gruvbox'
+Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'myusuf3/numbers.vim'
 Plugin 'noprompt/vim-yardoc'
 Plugin 'rodjek/vim-puppet'
@@ -47,9 +49,11 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-markdown'
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-speeddating'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-vividchalk'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'vim-scripts/utl.vim'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'w0ng/vim-hybrid'
 Plugin 'zeis/vim-kolor'
@@ -70,7 +74,7 @@ set background=dark
 
 let g:seoul256_background=233
 let g:gruvbox_italic=0
-let g:gruvbox_contrast='hard'
+let g:gruvbox_contrast_dark=1
 
 " try-catch here to solve chicken and egg problem when chef installs plugins
 " on a new machine
@@ -100,6 +104,10 @@ let g:airline_theme='tomorrow'
 " set leader to ','
 let mapleader=','
 
+" set localleader
+let maplocalleader=','
+
+
 
 " set indentation for special file types
 autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
@@ -125,6 +133,7 @@ nnoremap <leader>r :Dispatch<CR>
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
+let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_puppet_checkers = ['puppetlint']
 let g:syntastic_python_checkers = ['flake8']
 " let g:syntastic_ruby_checkers = ['rubocop']
