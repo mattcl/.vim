@@ -118,6 +118,7 @@ autocmd Filetype cucumber setlocal ts=2 sts=2 sw=2
 autocmd Filetype coffee setlocal ts=2 sts=2 sw=2
 autocmd Filetype yaml setlocal ts=2 sts=2 sw=2
 autocmd Filetype go setlocal ts=8 sts=8 sw=8 noexpandtab
+autocmd Filetype org setlocal ts=2 sts=2 sw=2
 autocmd Filetype php set omnifunc=phpcomplete#CompletePHP
 
 " set dispatch for file types
@@ -165,6 +166,9 @@ let g:pymode_options_max_line_length = 119
 let g:pymode_rope = 0
 let g:pymode_rope_complete_on_dot = 0
 let g:pymode_rope_completion = 0
+
+" utl
+let g:utl_cfg_hdl_scm_http = ":Start! google-chrome '%u'"
 
 " remove trailing whitespace on write
 autocmd BufWritePre * :%s/\s\+$//e
@@ -369,6 +373,11 @@ command! -nargs=1 SDR silent call s:RunShellCommand("svn diff -x -w -r ".<args>.
 
 " svn blame. select block in visual mode and type gl
 vmap gl :<C-U>silent Shell svn blame <C-R>=expand("%:p") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p <CR>
+
+" silent with redraw
+command! -nargs=1 Silent
+  \ | execute ':silent !'.<q-args>
+  \ | execute ':redraw!'
 
 " better shell command
 command! -complete=shellcmd -nargs=+ Shell call s:RunShellCommand(<q-args>)
