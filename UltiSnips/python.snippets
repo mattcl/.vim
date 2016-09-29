@@ -42,8 +42,20 @@ patched.return_value = ${2:RETURN_VALUE}
 return patched$0
 endsnippet
 
+snippet comfail "mock command failure" !b
+@pytest.fixture
+def mocked_command_returncode():
+	return 1$0
+endsnippet
+
 snippet comfix "command fixture args" !w
 mocked_command, mocked_command_instance$0
+endsnippet
+
+snippet asscom "mocked command assertions" !b
+mocked_command.assert_called_once_with(
+	$1)
+mocked_command_instance.run.assert_called_once_with()$0
 endsnippet
 
 snippet xfail "mark as xfail" !b

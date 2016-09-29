@@ -9,30 +9,31 @@ call vundle#begin()
 " required!
 Plugin 'gmarik/Vundle.vim'
 
-Plugin 'FooSoft/vim-argwrap'
-Plugin 'Keithbsmiley/rspec.vim'
-Plugin 'Lokaltog/vim-distinguished'
-Plugin 'Lokaltog/vim-easymotion'
-Plugin 'SirVer/ultisnips'
-Plugin 'Valloric/YouCompleteMe'
+" Plugin 'fatih/vim-hclfmt'
 Plugin 'b4b4r07/vim-hcl'
 Plugin 'baskerville/bubblegum'
 Plugin 'bling/vim-airline'
 Plugin 'dhruvasagar/vim-table-mode'
 Plugin 'dougireton/vim-chef'
 Plugin 'fatih/vim-go'
+Plugin 'FooSoft/vim-argwrap'
 Plugin 'godlygeek/tabular'
 Plugin 'goldfeld/vim-seek'
 Plugin 'jceb/vim-orgmode'
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'jonathanfilip/vim-lucius'
+Plugin 'junegunn/fzf.vim'
 Plugin 'junegunn/seoul256.vim'
 Plugin 'kchmck/vim-coffee-script'
+Plugin 'Keithbsmiley/rspec.vim'
 Plugin 'klen/python-mode'
 Plugin 'lervag/vimtex'
+Plugin 'Lokaltog/vim-distinguished'
+Plugin 'Lokaltog/vim-easymotion'
 Plugin 'markcornick/vim-terraform'
 Plugin 'mattn/calendar-vim'
 Plugin 'mattn/emmet-vim'
+Plugin 'metakirby5/codi.vim'
 Plugin 'mileszs/ack.vim'
 Plugin 'morhetz/gruvbox'
 Plugin 'mustache/vim-mustache-handlebars'
@@ -42,6 +43,7 @@ Plugin 'rodjek/vim-puppet'
 Plugin 'rust-lang/rust.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'shawncplus/phpcomplete.vim'
+Plugin 'SirVer/ultisnips'
 Plugin 'tomasr/molokai'
 Plugin 'tpope/vim-abolish'
 Plugin 'tpope/vim-commentary'
@@ -53,6 +55,7 @@ Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-speeddating'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-vividchalk'
+Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'vim-scripts/utl.vim'
 Plugin 'w0ng/vim-hybrid'
@@ -61,10 +64,10 @@ Plugin 'zeis/vim-kolor'
 
 call vundle#end()
 
-let $FZF_DEFAULT_COMMAND = 'ag -l -g "" --path-to-agignore=~/.agignore'
-
 " fzf
 set rtp+=~/.fzf
+
+let g:org_aggressive_conceal = 0
 
 syntax on
 filetype on
@@ -120,6 +123,7 @@ autocmd Filetype coffee setlocal ts=2 sts=2 sw=2
 autocmd Filetype yaml setlocal ts=2 sts=2 sw=2
 autocmd Filetype go setlocal ts=8 sts=8 sw=8 noexpandtab
 autocmd Filetype org setlocal ts=2 sts=2 sw=2
+autocmd Filetype hcl setlocal ts=2 sts=2 sw=2
 autocmd Filetype php set omnifunc=phpcomplete#CompletePHP
 
 " set dispatch for file types
@@ -197,6 +201,8 @@ let g:ctrlp_custom_ignore = {
     \ }
 
 " FZF
+let $FZF_DEFAULT_COMMAND = 'ag -l -g "" --path-to-agignore=~/.agignore'
+
 function FuzzyFind()
   " Contains a null-byte that is stripped.
   let gitparent=system('git rev-parse --show-toplevel')[:-2]
@@ -357,6 +363,19 @@ set cindent
 " python-mode overrides
 let g:pymode_run_bind = '<C-S-F8>'
 
+" grep
+set grepprg=rg\ --vimgrep
+
+xmap <silent> <leader>g :call GrepSelected()<CR>
+
+command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
+
+command! -bang -nargs=* FindIgnore call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
+
+function! GrepSelected()
+  silent execute ':Find '.<sid>get_visual_selection()
+endfunction
+
 " change filename
 command! -nargs=1 AddExt execute "saveas ".expand("%:p").<q-args>
 command! -nargs=1 ChgExt execute "saveas ".expand("%:p:r").<q-args>
@@ -403,4 +422,14 @@ function! s:RunShellCommand(cmdline, ...)
     "call setline(3,substitute(getline(2),'.','=','g'))
     execute '$read !'. expanded_cmdline
     1
+endfunction
+
+function! s:get_visual_selection()
+  " Why is this not a built-in Vim script function?!
+  let [lnum1, col1] = getpos("'<")[1:2]
+  let [lnum2, col2] = getpos("'>")[1:2]
+  let lines = getline(lnum1, lnum2)
+  let lines[-1] = lines[-1][: col2 - (&selection == 'inclusive' ? 1 : 2)]
+  let lines[0] = lines[0][col1 - 1:]
+  return join(lines, "\n")
 endfunction

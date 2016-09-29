@@ -1,0 +1,41 @@
+snippet {{ "handlebars inline" !i
+\{\{$1}}$0
+endsnippet
+
+snippet "{{#([^\s]*)" "handlebars block" !br
+\{\{#`!p snip.rv = match.group(1)`$1}}
+	$2
+\{\{/`!p snip.rv = match.group(1)`}}$0
+endsnippet
+
+snippet link "ember link-to" !i
+\{\{#link-to '${1:ROUTE}'$2}}${3:LINK_TEXY'}\{\{/link-to}}$0
+endsnippet
+
+snippet each "ember each" !i
+\{\{#each ${1:items} as |${2:item}|}}
+	$2
+\{\{/each}}$0
+endsnippet
+
+snippet each-in "ember each-in" !i
+\{\{#each-in ${1:items} as |${2:key} ${3:value}|}}
+	$3
+\{\{/each-in}}$0
+endsnippet
+
+snippet iff "inline if" !i
+\{\{if ${1:CONDITION} ${2:WHEN-TRUE} ${3:WHEN-FALSE}}}$0
+endsnippet
+
+snippet if "if block" !w
+\{\{#if ${1:CONDITION}}}$2\{\{/if}}$0
+endsnippet
+
+snippet unless "unless block" !w
+\{\{#unless ${1:CONDITION}}}$2\{\{/unless}}$0
+endsnippet
+
+snippet else "else" !w
+\{\{else}}$0
+endsnippet
