@@ -157,6 +157,7 @@ let g:UltiSnipsJumpBackwardTrigger="<C-k>"
 let g:ycm_key_list_select_completion = ['<TAB>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<Up>']
 let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_rust_src_path = '/usr/local/rust/rustc-1.12.0/src'
 
 " prevent preview window
 set completeopt=menu
