@@ -203,7 +203,8 @@ let g:ctrlp_custom_ignore = {
     \ }
 
 " FZF
-let $FZF_DEFAULT_COMMAND = 'ag -l -g "" --path-to-agignore=~/.agignore'
+" let $FZF_DEFAULT_COMMAND = 'ag -l -g "" --path-to-agignore=~/.agignore'
+let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
 
 function FuzzyFind()
   " Contains a null-byte that is stripped.
@@ -435,3 +436,11 @@ function! s:get_visual_selection()
   let lines[0] = lines[0][col1 - 1:]
   return join(lines, "\n")
 endfunction
+
+" commentary stuff that was removed, but I'm too used to the old keybindings
+if maparg('\\','n') ==# '' && maparg('\','n') ==# '' && get(g:, 'commentary_map_backslash', 1)
+  xmap \\  gc<CR>
+  nmap \\  gc<CR>
+  nmap \\\ gc<CR>
+  nmap \\u gc<CR>
+endif
