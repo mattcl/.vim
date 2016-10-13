@@ -37,6 +37,7 @@ Plugin 'mileszs/ack.vim'
 Plugin 'morhetz/gruvbox'
 Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'myusuf3/numbers.vim'
+Plugin 'neomake/neomake'
 Plugin 'noprompt/vim-yardoc'
 Plugin 'rodjek/vim-puppet'
 Plugin 'rust-lang/rust.vim'
@@ -112,8 +113,6 @@ let mapleader=','
 " set localleader
 let maplocalleader=','
 
-
-
 " set indentation for special file types
 autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
 autocmd Filetype python setlocal ts=4 sts=4 sw=4
@@ -131,6 +130,11 @@ autocmd Filetype php set omnifunc=phpcomplete#CompletePHP
 autocmd FileType python let b:dispatch = 'python %'
 autocmd FileType ruby let b:dispatch = 'ruby %'
 autocmd FileType puppet let b:dispatch = 'vagrant provision'
+
+" neomake
+let g:neomake_open_list = 2
+
+autocmd Filetype rust nnoremap <buffer> <leader>z :Neomake! cargo<CR>
 
 " commentary
 autocmd FileType rust setlocal commentstring=//\ %s
