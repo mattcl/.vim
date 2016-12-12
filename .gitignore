@@ -3,3 +3,5 @@
 *.pyc
 
 bundle/
+eclim/
+plugin/eclim.vim

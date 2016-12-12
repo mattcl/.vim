@@ -124,6 +124,7 @@ autocmd Filetype yaml setlocal ts=2 sts=2 sw=2
 autocmd Filetype go setlocal ts=8 sts=8 sw=8 noexpandtab
 autocmd Filetype org setlocal ts=2 sts=2 sw=2
 autocmd Filetype hcl setlocal ts=2 sts=2 sw=2
+autocmd Filetype java setlocal ts=4 sts=4 sw=4 colorcolumn=120
 autocmd Filetype php set omnifunc=phpcomplete#CompletePHP
 
 " set dispatch for file types
@@ -161,7 +162,8 @@ let g:UltiSnipsJumpBackwardTrigger="<C-k>"
 let g:ycm_key_list_select_completion = ['<TAB>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<Up>']
 let g:ycm_collect_identifiers_from_tags_files = 1
-let g:ycm_rust_src_path = '/usr/local/rust/rustc-1.12.0/src'
+let g:ycm_rust_src_path = '/usr/local/rust/rustc-1.13.0/src'
+let g:EclimCompletionMethod = 'omnifunc'
 
 " prevent preview window
 set completeopt=menu
