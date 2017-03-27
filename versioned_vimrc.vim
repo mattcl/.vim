@@ -168,7 +168,7 @@ let g:UltiSnipsJumpBackwardTrigger="<C-k>"
 let g:ycm_key_list_select_completion = ['<TAB>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<Up>']
 let g:ycm_collect_identifiers_from_tags_files = 1
-let g:ycm_rust_src_path = '/usr/local/rust/rustc-1.13.0/src'
+let g:ycm_rust_src_path = systemlist('rustc --print sysroot')[0] . '/lib/rustlib/src/rust/src'
 let g:EclimCompletionMethod = 'omnifunc'
 
 " prevent preview window
