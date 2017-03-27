@@ -31,13 +31,13 @@ def context_${1:SOME_CONTEXT}():$0
 endsnippet
 
 snippet "patch (.*)" "patch MATCH" !br
-patched = mocker.patch('`!p snip.rv = match.group(1)`')
+patched = mocker.patch('`!p snip.rv = match.group(1)`', autospec=True)
 patched.return_value = ${1:RETURN_VALUE}
 return patched$0
 endsnippet
 
 snippet "opatch (.*)" "patch some object MATCH" !br
-patched = mocker.patch.object(`!p snip.rv = match.group(1)`, '${1:FUNCTION}')
+patched = mocker.patch.object(`!p snip.rv = match.group(1)`, '${1:FUNCTION}', autospec=True)
 patched.return_value = ${2:RETURN_VALUE}
 return patched$0
 endsnippet
@@ -78,7 +78,17 @@ snippet rip "random ip" !w
 `!p if not snip.c: snip.rv = random_ip()`$0
 endsnippet
 
+snippet ris "random ipv6" !w
+`!p if not snip.c: snip.rv = random_ipv6()`$0
+endsnippet
+
 global !p
 def random_ip():
 	return ".".join(map(str, (random.randint(1, 255) for _ in range(4))))
+endglobal
+
+global !p
+def random_ipv6():
+	bound = 16**4
+	return '2001:face:' + ":".join(('%x' % random.randint(0, bound) for _ in range(6)))
 endglobal

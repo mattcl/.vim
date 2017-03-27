@@ -12,6 +12,7 @@ Plugin 'gmarik/Vundle.vim'
 " Plugin 'fatih/vim-hclfmt'
 Plugin 'b4b4r07/vim-hcl'
 Plugin 'baskerville/bubblegum'
+Plugin 'blindFS/vim-taskwarrior'
 Plugin 'dhruvasagar/vim-table-mode'
 Plugin 'dougireton/vim-chef'
 Plugin 'fatih/vim-go'
@@ -113,6 +114,9 @@ let mapleader=','
 " set localleader
 let maplocalleader=','
 
+" disable emmet
+let g:user_emmet_install_global = 0
+
 " set indentation for special file types
 autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
 autocmd Filetype python setlocal ts=4 sts=4 sw=4
@@ -131,6 +135,8 @@ autocmd Filetype php set omnifunc=phpcomplete#CompletePHP
 autocmd FileType python let b:dispatch = 'python %'
 autocmd FileType ruby let b:dispatch = 'ruby %'
 autocmd FileType puppet let b:dispatch = 'vagrant provision'
+
+autocmd FileType eruby,html,css EmmetInstall
 
 " neomake
 let g:neomake_open_list = 2
