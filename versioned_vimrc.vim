@@ -1,3 +1,5 @@
+scriptencoding utf-8
+set encoding=utf-8
 set nocompatible
 filetype off
 set number
@@ -12,7 +14,6 @@ Plugin 'gmarik/Vundle.vim'
 " Plugin 'fatih/vim-hclfmt'
 Plugin 'b4b4r07/vim-hcl'
 Plugin 'baskerville/bubblegum'
-Plugin 'blindFS/vim-taskwarrior'
 Plugin 'dhruvasagar/vim-table-mode'
 Plugin 'dougireton/vim-chef'
 Plugin 'fatih/vim-go'
@@ -168,7 +169,10 @@ let g:UltiSnipsJumpBackwardTrigger="<C-k>"
 let g:ycm_key_list_select_completion = ['<TAB>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<Up>']
 let g:ycm_collect_identifiers_from_tags_files = 1
-let g:ycm_rust_src_path = systemlist('rustc --print sysroot')[0] . '/lib/rustlib/src/rust/src'
+try
+  let g:ycm_rust_src_path = systemlist('rustc --print sysroot')[0] . '/lib/rustlib/src/rust/src'
+catch
+endtry
 let g:EclimCompletionMethod = 'omnifunc'
 
 " prevent preview window
