@@ -222,11 +222,11 @@ function FuzzyFind()
 
   " if a .fzf file exists, it overrides the git repo
   if !empty(fzf_marker)
-    silent execute ':FZF ' . fnamemodify(fzf_marker, ':p:h')
+    execute ':FZF ' . fnamemodify(fzf_marker, ':p:h')
   elseif empty(matchstr(gitparent, '^fatal:.*'))
-    silent execute ':FZF ' . gitparent
+    execute ':FZF ' . gitparent
   else
-    silent execute ':FZF .'
+    execute ':FZF .'
   endif
 endfunction
 
