@@ -33,6 +33,7 @@ Plugin 'klen/python-mode'
 Plugin 'lervag/vimtex'
 Plugin 'Lokaltog/vim-distinguished'
 Plugin 'Lokaltog/vim-easymotion'
+Plugin 'maralla/completor.vim'
 Plugin 'markcornick/vim-terraform'
 Plugin 'mattn/calendar-vim'
 Plugin 'mattn/emmet-vim'
@@ -59,7 +60,7 @@ Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-speeddating'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-vividchalk'
-Plugin 'Valloric/YouCompleteMe'
+" Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-ruby/vim-ruby'
@@ -176,6 +177,12 @@ try
 catch
 endtry
 let g:EclimCompletionMethod = 'omnifunc'
+
+" completer
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
+let g:completor_racer_binary = '/home/matt/.cargo/bin/racer'
 
 " prevent preview window
 set completeopt=menu
