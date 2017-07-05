@@ -42,6 +42,22 @@ patched.return_value = ${2:RETURN_VALUE}
 return patched$0
 endsnippet
 
+snippet fpatch "fixture patch" !b
+@pytest.fixture$5
+def mocked_${1:NAME}(mocker$4):
+	patched = mocker.patch('${2:FUNCTION}', autospec=True)
+	patched.return_value = ${3:RETURN_VALUE}
+	return patched$0
+endsnippet
+
+snippet fopatch "fixture object patch" !b
+@pytest.fixture$5
+def mocked_${7:$2}(mocker, ${1:OBJECT}$4):
+	patched = mocker.patch.object(${6:$1}, '${2:FUNCTION}', autospec=True)
+	patched.return_value = ${3:RETURN_VALUE}
+	return patched$0
+endsnippet
+
 snippet comfail "mock command failure" !b
 @pytest.fixture
 def mocked_command_returncode():
