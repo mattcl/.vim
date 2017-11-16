@@ -42,11 +42,11 @@ Plugin 'mileszs/ack.vim'
 Plugin 'morhetz/gruvbox'
 Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'myusuf3/numbers.vim'
-Plugin 'neomake/neomake'
+" Plugin 'neomake/neomake'
 Plugin 'noprompt/vim-yardoc'
 Plugin 'rodjek/vim-puppet'
 Plugin 'rust-lang/rust.vim'
-Plugin 'scrooloose/syntastic'
+" Plugin 'scrooloose/syntastic'
 Plugin 'shawncplus/phpcomplete.vim'
 Plugin 'SirVer/ultisnips'
 Plugin 'tomasr/molokai'
@@ -61,11 +61,13 @@ Plugin 'tpope/vim-speeddating'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-vividchalk'
 " Plugin 'Valloric/YouCompleteMe'
+Plugin 'Valloric/ListToggle'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'vim-scripts/utl.vim'
 Plugin 'w0ng/vim-hybrid'
+Plugin 'w0rp/ale'
 Plugin 'wellle/targets.vim'
 Plugin 'zeis/vim-kolor'
 
@@ -154,6 +156,17 @@ autocmd FileType rust setlocal commentstring=//\ %s
 nnoremap <F9> :Dispatch<CR>
 nnoremap <leader>r :Dispatch<CR>
 
+" ale checkers
+let g:ale_linters = {
+\  'python': ['flake8'],
+\}
+
+let g:ale_lint_delay = 300
+let g:ale_sign_column_always = 1
+let g:ale_set_quickfix = 1
+let g:airline#extensions#ale#enabled = 1
+
+
 " syntastic checkers
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
@@ -215,7 +228,7 @@ nnoremap <F3> :NumbersToggle<CR>
 
 " FZF
 " let $FZF_DEFAULT_COMMAND = 'ag -l -g "" --path-to-agignore=~/.agignore'
-let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
+let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --glob "!.git/*"'
 
 function FuzzyFind()
   " Contains a null-byte that is stripped.
@@ -326,8 +339,9 @@ nnoremap N Nzz
 nnoremap + <C-a>
 nnoremap - <C-x>
 
-" close quickfix
-nnoremap <Leader>q :ccl<cr>
+" quickfix and loc list
+let g:lt_location_list_toggle_map = '<leader>l'
+let g:lt_quickfix_list_toggle_map = '<leader>q'
 
 " show invisible characters
 set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮,trail:·
