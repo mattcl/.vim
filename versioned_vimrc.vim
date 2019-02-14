@@ -26,10 +26,12 @@ Plugin 'jceb/vim-orgmode'
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'jonathanfilip/vim-lucius'
 Plugin 'junegunn/fzf.vim'
+Plugin 'junegunn/goyo.vim'
+Plugin 'junegunn/limelight.vim'
 Plugin 'junegunn/seoul256.vim'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'Keithbsmiley/rspec.vim'
-Plugin 'klen/python-mode'
+" Plugin 'klen/python-mode'
 Plugin 'lervag/vimtex'
 Plugin 'Lokaltog/vim-distinguished'
 Plugin 'Lokaltog/vim-easymotion'
@@ -89,16 +91,6 @@ let g:seoul256_background=233
 let g:gruvbox_italic=0
 let g:gruvbox_contrast_dark=1
 
-" try-catch here to solve chicken and egg problem when chef installs plugins
-" on a new machine
-try
-  " colorscheme seoul256
-  colorscheme gruvbox
-  " colorscheme kolor
-  " colorscheme xoria256
-catch
-endtry
-
 " don't display '|' characters on vertical splits
 " There is a significant space after the backslash
 set fillchars+=vert:\ | " the '|' here separates commands
@@ -151,6 +143,9 @@ autocmd Filetype rust nnoremap <buffer> <leader>z :Neomake! cargo<CR>
 
 " commentary
 autocmd FileType rust setlocal commentstring=//\ %s
+
+autocmd! User GoyoEnter Limelight
+autocmd! User GoyoLeave Limelight!
 
 " dispatch default bindings
 nnoremap <F9> :Dispatch<CR>
@@ -469,3 +464,91 @@ if maparg('\\','n') ==# '' && maparg('\','n') ==# '' && get(g:, 'commentary_map_
   nmap \\\ gc<CR>
   nmap \\u gc<CR>
 endif
+
+" Colorscheme switching bullshit
+if !exists('s:known_links')
+	let s:known_links = {}
+endif
+
+function! s:Find_links() " {{{1
+	" Find and remember links between highlighting groups.
+	redir => listing
+	try
+		silent highlight
+	finally
+		redir END
+	endtry
+	for line in split(listing, "\n")
+		let tokens = split(line)
+		" We're looking for lines like "String xxx links to Constant" in the
+		" output of the :highlight command.
+		if len(tokens) == 5 && tokens[1] == 'xxx' && tokens[2] == 'links' && tokens[3] == 'to'
+			let fromgroup = tokens[0]
+			let togroup = tokens[4]
+			let s:known_links[fromgroup] = togroup
+		endif
+	endfor
+endfunction
+
+function! s:Restore_links() " {{{1
+	" Restore broken links between highlighting groups.
+	redir => listing
+	try
+		silent highlight
+	finally
+		redir END
+	endtry
+	let num_restored = 0
+	for line in split(listing, "\n")
+		let tokens = split(line)
+		" We're looking for lines like "String xxx cleared" in the
+		" output of the :highlight command.
+		if len(tokens) == 3 && tokens[1] == 'xxx' && tokens[2] == 'cleared'
+			let fromgroup = tokens[0]
+			let togroup = get(s:known_links, fromgroup, '')
+			if !empty(togroup)
+				execute 'hi link' fromgroup togroup
+				let num_restored += 1
+			endif
+		endif
+	endfor
+endfunction
+
+function! s:AccurateColorscheme(colo_name)
+	call <SID>Find_links()
+	exec "colorscheme " a:colo_name
+	call <SID>Restore_links()
+endfunction
+
+command! -nargs=1 -complete=color MyColorscheme call <SID>AccurateColorscheme(<q-args>)
+
+" try-catch here to solve chicken and egg problem when chef installs plugins
+" on a new machine
+try
+  " colorscheme seoul256
+  MyColorscheme gruvbox
+  " colorscheme kolor
+  " colorscheme xoria256
+catch
+endtry
+
+" Limelight additional stuff
+" Color name (:help cterm-colors) or ANSI code
+let g:limelight_conceal_ctermfg = 'gray'
+let g:limelight_conceal_ctermfg = 240
+
+" " Default: 0.5
+" let g:limelight_default_coefficient = 0.7
+
+" " Number of preceding/following paragraphs to include (default: 0)
+" let g:limelight_paragraph_span = 1
+
+" " Beginning/end of paragraph
+" "   When there's no empty line between the paragraphs
+" "   and each paragraph starts with indentation
+" let g:limelight_bop = '^\s'
+" let g:limelight_eop = '\ze\n^\s'
+
+" " Highlighting priority (default: 10)
+" "   Set it to -1 not to overrule hlsearch
+" let g:limelight_priority = -1
