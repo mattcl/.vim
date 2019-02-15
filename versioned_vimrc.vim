@@ -34,6 +34,7 @@ Plugin 'junegunn/seoul256.vim'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'Keithbsmiley/rspec.vim'
 Plugin 'kh3phr3n/python-syntax'
+" Errors with this under ubuntu 18.04
 " Plugin 'klen/python-mode'
 Plugin 'lervag/vimtex'
 Plugin 'Lokaltog/vim-distinguished'
@@ -78,6 +79,9 @@ Plugin 'wellle/targets.vim'
 Plugin 'zeis/vim-kolor'
 
 call vundle#end()
+
+" ruby syntax highlighting sucks right now with the new engine
+set regexpengine=1
 
 "
 let g:virtualenv_auto_activate = 1
