@@ -22,8 +22,10 @@ Plugin 'glts/vim-magnum'
 Plugin 'glts/vim-radical'
 Plugin 'godlygeek/tabular'
 Plugin 'goldfeld/vim-seek'
+" Plugin 'hdima/python-syntax'
 Plugin 'jceb/vim-orgmode'
 Plugin 'jelera/vim-javascript-syntax'
+Plugin 'jmcantrell/vim-virtualenv'
 Plugin 'jonathanfilip/vim-lucius'
 Plugin 'junegunn/fzf.vim'
 Plugin 'junegunn/goyo.vim'
@@ -31,6 +33,7 @@ Plugin 'junegunn/limelight.vim'
 Plugin 'junegunn/seoul256.vim'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'Keithbsmiley/rspec.vim'
+Plugin 'kh3phr3n/python-syntax'
 " Plugin 'klen/python-mode'
 Plugin 'lervag/vimtex'
 Plugin 'Lokaltog/vim-distinguished'
@@ -66,6 +69,7 @@ Plugin 'tpope/vim-vividchalk'
 Plugin 'Valloric/ListToggle'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+" Plugin 'vim-python/python-syntax'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'vim-scripts/utl.vim'
 Plugin 'w0ng/vim-hybrid'
@@ -74,6 +78,9 @@ Plugin 'wellle/targets.vim'
 Plugin 'zeis/vim-kolor'
 
 call vundle#end()
+
+"
+let g:virtualenv_auto_activate = 1
 
 " fzf
 set rtp+=~/.fzf
@@ -102,7 +109,7 @@ set spellcapcheck=
 
 set ttimeoutlen=50
 
-" let python_highlight_all = 1
+let python_self_cls_highlight = 1
 let g:airline_powerline_fonts = 1
 let g:airline_theme='tomorrow'
 
@@ -191,6 +198,7 @@ inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
 let g:completor_racer_binary = '/home/matt/.cargo/bin/racer'
+let g:completor_python_binary = 'python'
 
 " prevent preview window
 set completeopt=menu

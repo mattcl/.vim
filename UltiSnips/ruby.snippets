@@ -9,3 +9,27 @@ endsnippet
 snippet long "allow long line" !w
 # rubocop:disable Metrics/LineLength
 endsnippet
+
+# testing stuff
+snippet desc "describe" !b
+describe '${1:SOME_DESCRIPTION}' do
+  $0
+end
+endsnippet
+
+snippet con "describe context" !b
+context '${1:SOME_CONTEXT}' do
+  $0
+end
+endsnippet
+
+snippet it "test case" !b
+it '${1:does something}' do
+  $0
+end
+endsnippet
+
+snippet let "let statement" !b
+let(:${1:does something}) { $2 }$0
+endsnippet
+
