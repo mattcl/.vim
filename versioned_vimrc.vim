@@ -50,6 +50,10 @@ Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'myusuf3/numbers.vim'
 " Plugin 'neomake/neomake'
 Plugin 'noprompt/vim-yardoc'
+Plugin 'reedes/vim-lexical'
+Plugin 'reedes/vim-litecorrect'
+Plugin 'reedes/vim-pencil'
+" Plugin 'reedes/vim-textobj-sentence'
 Plugin 'rodjek/vim-puppet'
 Plugin 'rust-lang/rust.vim'
 " Plugin 'scrooloose/syntastic'
@@ -147,6 +151,13 @@ autocmd FileType puppet let b:dispatch = 'vagrant provision'
 
 autocmd FileType eruby,html,css EmmetInstall
 
+augroup prose
+  autocmd!
+  autocmd FileType markdown,mkd call pencil#init()
+                            \ | call lexical#init()
+                            \ | call litecorrect#init()
+augroup END
+
 " neomake
 let g:neomake_open_list = 2
 
@@ -155,8 +166,23 @@ autocmd Filetype rust nnoremap <buffer> <leader>z :Neomake! cargo<CR>
 " commentary
 autocmd FileType rust setlocal commentstring=//\ %s
 
-autocmd! User GoyoEnter Limelight
-autocmd! User GoyoLeave Limelight!
+" goyo
+function! s:goyo_enter()
+  NumbersDisable
+  set nonumber
+  set norelativenumber
+  Limelight
+endfunction
+
+function! s:goyo_leave()
+  Limelight!
+  set number
+  set relativenumber
+  NumbersEnable
+endfunction
+
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 " dispatch default bindings
 nnoremap <F9> :Dispatch<CR>
@@ -538,6 +564,7 @@ command! -nargs=1 -complete=color MyColorscheme call <SID>AccurateColorscheme(<q
 " on a new machine
 try
   " colorscheme seoul256
+  let g:gruvbox_guisp_fallback = "bg"
   MyColorscheme gruvbox
   " colorscheme kolor
   " colorscheme xoria256
