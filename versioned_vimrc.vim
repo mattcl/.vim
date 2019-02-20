@@ -95,6 +95,8 @@ set rtp+=~/.fzf
 
 let g:org_aggressive_conceal = 0
 
+let g:markdown_syntax_conceal = 0
+
 syntax on
 filetype on
 filetype plugin indent on
