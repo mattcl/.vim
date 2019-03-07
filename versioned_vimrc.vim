@@ -174,6 +174,7 @@ function! s:goyo_enter()
   set nonumber
   set norelativenumber
   Limelight
+  CompletorDisable
 endfunction
 
 function! s:goyo_leave()
@@ -181,6 +182,7 @@ function! s:goyo_leave()
   set number
   set relativenumber
   NumbersEnable
+  CompletorEnable
 endfunction
 
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
