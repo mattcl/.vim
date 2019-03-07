@@ -114,9 +114,6 @@ set fillchars+=vert:\ | " the '|' here separates commands
 
 set cursorline
 set colorcolumn=80
-set spell spelllang=en_us
-set spellcapcheck=
-
 set ttimeoutlen=50
 
 let python_self_cls_highlight = 1
@@ -158,6 +155,9 @@ augroup prose
   autocmd FileType markdown,mkd call pencil#init()
                             \ | call lexical#init()
                             \ | call litecorrect#init()
+                            \ | setlocal spell spelllang=en_us
+                            \ | setlocal spellcapcheck=
+
 augroup END
 
 " neomake
