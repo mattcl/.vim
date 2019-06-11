@@ -1,3 +1,7 @@
+" Until machines can be patched
+ set modelines=0
+ set nomodeline
+
 scriptencoding utf-8
 set encoding=utf-8
 set nocompatible
