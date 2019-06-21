@@ -98,6 +98,14 @@ snippet ris "random ipv6" !w
 `!p if not snip.c: snip.rv = random_ipv6()`$0
 endsnippet
 
+snippet rap "random path" !w
+`!p if not snip.c: snip.rv = random_path()`$0
+endsnippet
+
+snippet "rap(\d+)" "random path of length n" !wr
+`!p if not snip.c: snip.rv = random_path(int(match.group(1)))`$0
+endsnippet
+
 global !p
 def random_ip():
 	return ".".join(map(str, (random.randint(1, 255) for _ in range(4))))
@@ -107,4 +115,10 @@ global !p
 def random_ipv6():
 	bound = 16**4
 	return '2001:face:' + ":".join(('%x' % random.randint(0, bound) for _ in range(6)))
+endglobal
+
+global !p
+def random_path(length=3):
+	components = ['foo', 'bar', 'baz', 'herp', 'derp', 'hoof', 'doof', 'hello', 'world']
+	return '/' + str(os.path.join(*random.sample(components, min([length, len(components)]))))
 endglobal
