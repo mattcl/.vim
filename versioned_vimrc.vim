@@ -15,11 +15,14 @@ call vundle#begin()
 " required!
 Plugin 'gmarik/Vundle.vim'
 
+" Plugin 'artur-shaik/vim-javacomplete2'
 " Plugin 'fatih/vim-hclfmt'
 Plugin 'b4b4r07/vim-hcl'
 Plugin 'baskerville/bubblegum'
+Plugin 'cespare/vim-toml'
 Plugin 'dhruvasagar/vim-table-mode'
 Plugin 'dougireton/vim-chef'
+Plugin 'elixir-editors/vim-elixir'
 Plugin 'fatih/vim-go'
 Plugin 'FooSoft/vim-argwrap'
 Plugin 'glts/vim-magnum'
@@ -28,7 +31,7 @@ Plugin 'godlygeek/tabular'
 Plugin 'goldfeld/vim-seek'
 " Plugin 'hdima/python-syntax'
 Plugin 'jceb/vim-orgmode'
-Plugin 'jelera/vim-javascript-syntax'
+" Plugin 'jelera/vim-javascript-syntax'
 Plugin 'jmcantrell/vim-virtualenv'
 Plugin 'jonathanfilip/vim-lucius'
 Plugin 'junegunn/fzf.vim'
@@ -43,17 +46,31 @@ Plugin 'kh3phr3n/python-syntax'
 Plugin 'lervag/vimtex'
 Plugin 'Lokaltog/vim-distinguished'
 Plugin 'Lokaltog/vim-easymotion'
-Plugin 'maralla/completor.vim'
+" Plugin 'maralla/completor.vim'
 Plugin 'markcornick/vim-terraform'
 Plugin 'mattn/calendar-vim'
 Plugin 'mattn/emmet-vim'
+" order again for the next three ---
+Plugin 'yuezk/vim-js'
+Plugin 'HerringtonDarkholme/yats.vim'
+Plugin 'maxmellon/vim-jsx-pretty'
+" order ended ---
 Plugin 'metakirby5/codi.vim'
 Plugin 'mileszs/ack.vim'
 Plugin 'morhetz/gruvbox'
 Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'myusuf3/numbers.vim'
+Plugin 'neoclide/coc.nvim'
 " Plugin 'neomake/neomake'
 Plugin 'noprompt/vim-yardoc'
+Plugin 'prabirshrestha/async.vim'
+" Plugin 'prabirshrestha/asyncomplete.vim'
+" Plugin 'prabirshrestha/asyncomplete-buffer.vim'
+Plugin 'prabirshrestha/vim-lsp'
+" Order for these as well
+" Plugin 'prabirshrestha/asyncomplete-lsp.vim'
+" Order for this matters
+Plugin 'mattn/vim-lsp-settings'
 Plugin 'reedes/vim-lexical'
 Plugin 'reedes/vim-litecorrect'
 Plugin 'reedes/vim-pencil'
@@ -63,6 +80,7 @@ Plugin 'rust-lang/rust.vim'
 " Plugin 'scrooloose/syntastic'
 Plugin 'shawncplus/phpcomplete.vim'
 Plugin 'SirVer/ultisnips'
+" Plugin 'prabirshrestha/asyncomplete-ultisnips.vim'
 Plugin 'tomasr/molokai'
 Plugin 'tpope/vim-abolish'
 Plugin 'tpope/vim-commentary'
@@ -84,6 +102,7 @@ Plugin 'vim-scripts/utl.vim'
 Plugin 'w0ng/vim-hybrid'
 Plugin 'w0rp/ale'
 Plugin 'wellle/targets.vim'
+" Plugin 'yami-beta/asyncomplete-omni.vim'
 Plugin 'zeis/vim-kolor'
 
 call vundle#end()
@@ -138,6 +157,7 @@ set expandtab
 autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
 autocmd Filetype python setlocal ts=4 sts=4 sw=4
 autocmd Filetype json setlocal ts=4 sts=4 sw=4
+autocmd Filetype js setlocal ts=2 sts=2 sw=2
 autocmd Filetype eruby setlocal ts=2 sts=2 sw=2
 autocmd Filetype cucumber setlocal ts=2 sts=2 sw=2
 autocmd Filetype coffee setlocal ts=2 sts=2 sw=2
@@ -153,17 +173,20 @@ autocmd FileType python let b:dispatch = 'python %'
 autocmd FileType ruby let b:dispatch = 'ruby %'
 autocmd FileType puppet let b:dispatch = 'vagrant provision'
 
-autocmd FileType eruby,html,css EmmetInstall
+autocmd FileType eruby,html,css,js EmmetInstall
+
+" autocmd FileType java setlocal omnifunc=lsp#complete
 
 augroup prose
   autocmd!
-  autocmd FileType markdown,mkd call pencil#init()
-                            \ | call lexical#init()
-                            \ | call litecorrect#init()
+  autocmd FileType markdown,mkd call litecorrect#init()
                             \ | setlocal spell spelllang=en_us
                             \ | setlocal spellcapcheck=
 
 augroup END
+
+" lanuage server
+" let g:lsp_async_completion = 1
 
 " neomake
 let g:neomake_open_list = 2
@@ -175,12 +198,15 @@ autocmd FileType rust setlocal commentstring=//\ %s
 
 " goyo
 function! s:goyo_enter()
+  call pencil#init()
+  call lexical#init()
   NumbersDisable
   set nonumber
   set norelativenumber
   Limelight
   CompletorDisable
 endfunction
+
 
 function! s:goyo_leave()
   Limelight!
@@ -194,12 +220,16 @@ autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 " dispatch default bindings
-nnoremap <F9> :Dispatch<CR>
+" nnoremap <F9> :Dispatch<CR>
 nnoremap <leader>r :Dispatch<CR>
+
+" paste mode toggle
+set pastetoggle=<F9>
 
 " ale checkers
 let g:ale_linters = {
 \  'python': ['flake8'],
+\  'java': ['eclipselsp'],
 \}
 
 let g:ale_lint_delay = 300
@@ -235,6 +265,7 @@ let g:EclimCompletionMethod = 'omnifunc'
 " completer
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" inoremap <expr> <cr> pumvisible() ? asynccomplete#close_popup() : "\<cr>"
 inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
 let g:completor_racer_binary = '/home/matt/.cargo/bin/racer'
 let g:completor_python_binary = 'python'
@@ -264,7 +295,7 @@ let g:utl_cfg_hdl_scm_http = ":Start! google-chrome '%u'"
 autocmd BufWritePre * :%s/\s\+$//e
 
 " toggle nerdtree
-map <F2> :NERDTreeToggle \| :silent NERDTreeMirror<CR>
+" map <F2> :NERDTreeToggle \| :silent NERDTreeMirror<CR>
 
 nnoremap <F3> :NumbersToggle<CR>
 
@@ -600,3 +631,56 @@ let g:limelight_conceal_ctermfg = 240
 " " Highlighting priority (default: 10)
 " "   Set it to -1 not to overrule hlsearch
 " let g:limelight_priority = -1
+
+" Java via languageserver
+" if executable('java') && filereadable(expand('~/lsp/eclipse.jdt.ls/plugins/org.eclipse.equinox.launcher_1.5.300.v20190213-1655.jar'))
+"     au User lsp_setup call lsp#register_server({
+"         \ 'name': 'eclipse.jdt.ls',
+"         \ 'cmd': {server_info->[
+"         \     'java',
+"         \     '-Declipse.application=org.eclipse.jdt.ls.core.id1',
+"         \     '-Dosgi.bundles.defaultStartLevel=4',
+"         \     '-Declipse.product=org.eclipse.jdt.ls.core.product',
+"         \     '-Dlog.level=ALL',
+"         \     '-noverify',
+"         \     '-Dfile.encoding=UTF-8',
+"         \     '-Xmx1G',
+"         \     '-jar',
+"         \     expand('~/lsp/eclipse.jdt.ls/plugins/org.eclipse.equinox.launcher_1.5.300.v20190213-1655.jar'),
+"         \     '-configuration',
+"         \     expand('~/lsp/eclipse.jdt.ls/config_linux'),
+"         \     '-data',
+"         \     getcwd()
+"         \ ]},
+"         \ 'whitelist': ['java'],
+"         \ })
+" endif
+
+" Async complete stuff
+" call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
+"     \ 'name': 'buffer',
+"     \ 'allowlist': ['*'],
+"     \ 'blocklist': ['go'],
+"     \ 'completor': function('asyncomplete#sources#buffer#completor'),
+"     \ 'config': {
+"     \    'max_buffer_size': 5000000,
+"     \  },
+"     \ }))
+
+" if has('python3')
+"   call asyncomplete#register_source(asyncomplete#sources#ultisnips#get_source_options({
+"       \ 'name': 'ultisnips',
+"       \ 'allowlist': ['*'],
+"       \ 'completor': function('asyncomplete#sources#ultisnips#completor'),
+"       \ }))
+" endif
+
+" call asyncomplete#register_source(asyncomplete#sources#omni#get_source_options({
+" \ 'name': 'omni',
+" \ 'allowlist': ['*'],
+" \ 'blocklist': ['c', 'cpp', 'html'],
+" \ 'completor': function('asyncomplete#sources#omni#completor'),
+" \ 'config': {
+" \   'show_source_kind': 1
+" \ }
+" \ }))
